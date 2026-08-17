@@ -1,0 +1,11 @@
+Flask
+python-dotenv
+requests
+Werkzeug
+numpy
+pandas
+joblib
+scikit-learn
+tensorflow
+Pillow
+google-generativeai

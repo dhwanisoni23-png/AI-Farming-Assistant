@@ -1,0 +1,482 @@
+{% extends "base.html" %}
+
+{% block title %}
+AI Farming Assistant
+{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet"
+      href="{{ url_for('static', filename='css/chatbot.css') }}">
+{% endblock %}
+
+{% block content %}
+<section class="ai-hero">
+
+    <div class="ai-overlay"></div>
+
+    <div class="container">
+
+        <div class="row align-items-center">
+
+            <div class="hero-content">
+
+                <div class="ai-badge">
+                    <i class="bi bi-stars"></i>
+                    Powered by Google Gemini AI
+                </div>
+
+                <h1 class="ai-heading">
+                    Smart AI <span>Assistant</span>
+                    
+                </h1>
+
+                <p class="ai-description">
+                    Get instant AI-powered guidance for crops,
+                    diseases, fertilizer, irrigation, soil health,
+                    pests and weather insights.
+                </p>
+
+                <div class="ai-actions">
+
+                    <a href="#" class="ai-chip">
+                        <i class="bi bi-tree"></i>
+                        Crop
+                    </a>
+
+                    <a href="#" class="ai-chip">
+                        <i class="bi bi-bug"></i>
+                        Disease
+                    </a>
+
+                    <a href="#" class="ai-chip">
+                        <i class="bi bi-cloud-sun"></i>
+                        Weather
+                    </a>
+
+                    <a href="#" class="ai-chip">
+                        <i class="bi bi-lightning-charge"></i>
+                        AI Help
+                    </a>
+
+                </div>
+
+            </div>
+
+            <!-- RIGHT -->
+
+            <div class="ai-glance-card">
+
+                <h4>AI Assistant at a Glance</h4>
+
+                <div class="glance-list">
+
+                    <div class="glance-row">
+
+                        <i class="bi bi-tree-fill"></i>
+
+                        <div>
+
+                            <h5>Crop Guidance</h5>
+
+                            <small>Best crop & variety suggestions</small>
+
+                        </div>
+
+                    </div>
+
+                    <div class="glance-row">
+
+                        <i class="bi bi-bug-fill"></i>
+
+                        <div>
+
+                            <h5>Disease Diagnosis</h5>
+
+                            <small>Identify & manage plant diseases</small>
+
+                        </div>
+
+                    </div>
+
+                    <div class="glance-row">
+
+                        <i class="bi bi-droplet-fill"></i>
+
+                        <div>
+
+                            <h5>Irrigation Advice</h5>
+
+                            <small>Water management planning</small>
+
+                        </div>
+
+                    </div>
+
+                    <div class="glance-row">
+
+                        <i class="bi bi-cloud-sun-fill"></i>
+
+                        <div>
+
+                            <h5>Weather Insights</h5>
+
+                            <small>Real-time weather & forecasts</small>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+<!--==================================================
+AI ASSISTANT INTRO
+===================================================-->
+
+<section class="assistant-intro">
+
+    <div class="container">
+
+        <div class="assistant-heading">
+
+            <div class="assistant-badge">
+
+                ALWAYS HERE TO HELP
+
+            </div>
+
+            <h2>
+
+                AI Farming Assistant
+
+            </h2>
+
+            <p>
+
+                Get instant AI-powered guidance for crop recommendations,
+                disease diagnosis, weather insights, fertilizer planning,
+                irrigation management, and pest control—all in one intelligent assistant.
+
+            </p>
+
+        </div>
+
+        <div class="assistant-features">
+
+            <div class="assistant-card">
+
+                <div class="assistant-card-icon">
+
+                    <i class="bi bi-tree"></i>
+
+                </div>
+
+                <h5>Crop Advisor</h5>
+
+            </div>
+
+            <div class="assistant-card">
+
+                <div class="assistant-card-icon">
+
+                    <i class="bi bi-bug"></i>
+
+                </div>
+
+                <h5>Disease Detection</h5>
+
+            </div>
+
+            <div class="assistant-card">
+
+                <div class="assistant-card-icon">
+
+                    <i class="bi bi-cloud-sun"></i>
+
+                </div>
+
+                <h5>Weather</h5>
+
+            </div>
+
+            <div class="assistant-card">
+
+                <div class="assistant-card-icon">
+
+                    <i class="bi bi-flower1"></i>
+
+                </div>
+
+                <h5>Fertilizer</h5>
+
+            </div>
+
+            <div class="assistant-card">
+
+                <div class="assistant-card-icon">
+
+                    <i class="bi bi-droplet-half"></i>
+
+                </div>
+
+                <h5>Irrigation</h5>
+
+            </div>
+
+            <div class="assistant-card">
+
+                <div class="assistant-card-icon">
+
+                    <i class="bi bi-shield-check"></i>
+
+                </div>
+
+                <h5>Pest Control</h5>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!--==================================================
+AI CHAT SECTION
+===================================================-->
+
+<section class="chat-section">
+
+    <div class="chat-layout">
+
+        <!-- ================= LEFT CHAT ================= -->
+
+        <div class="chat-card">
+
+            <!-- ================= HEADER ================= -->
+
+            <div class="chat-header">
+
+                <div class="chat-title">
+
+                    <div class="chat-logo">
+                        <i class="bi bi-robot"></i>
+                    </div>
+
+                    <div class="chat-title-text">
+
+                        <h4>AI Farming Assistant</h4>
+
+                        <p>
+                            <span class="online-dot"></span>
+                            AI Online • Ready to Help
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <a href="{{ url_for('chatbot.clear_chat') }}"
+                class="clear-chat-btn">
+
+                    <i class="bi bi-trash3"></i>
+
+                    Clear
+
+                </a>
+
+            </div>
+
+            <!-- ================= CHAT BODY ================= -->
+
+            <div class="chat-body">
+
+                {% for msg in messages %}
+
+                <div class="message {{ 'user-message' if msg.role == 'user' else 'ai-message' }}">
+
+                    {% if msg.role == "assistant" %}
+
+                    <div class="message-avatar">
+
+                        <i class="bi bi-robot"></i>
+
+                    </div>
+
+                    {% endif %}
+
+                    <div class="message-content">
+
+                        <div class="message-bubble">
+                            {{ msg.text
+                                |replace('**', '')
+                                |replace('__', '')
+                                |replace('* ', '• ')
+                                |replace('\r\n', '\n')
+                                |replace('\n', '<br>')
+                                |safe
+                            }}
+                        </div>
+
+                    </div>
+
+                    {% if msg.role == "user" %}
+
+                    <div class="message-avatar user-avatar">
+
+                        <i class="bi bi-person-fill"></i>
+
+                    </div>
+
+                    {% endif %}
+
+                </div>
+
+                {% endfor %}
+
+            </div>
+
+            <!-- ================= INPUT ================= -->
+
+            <form id="chatForm"
+                method="POST"
+                action="{{ url_for('chatbot.chatbot') }}"
+                class="chat-input-area">
+
+                <button
+                    type="button"
+                    class="attach-btn">
+
+                    <i class="bi bi-paperclip"></i>
+
+                </button>
+
+                <input
+                    id="chatInput"
+                    type="text"
+                    name="message"
+                    placeholder="Ask anything about farming..."
+                    autocomplete="off"
+                    required>
+
+                <button
+                    type="submit"
+                    class="send-btn">
+
+                    <i class="bi bi-send-fill"></i>
+
+                </button>
+
+            </form>
+
+        </div>
+
+        <!-- ================= RIGHT QUESTIONS ================= -->
+
+        <div class="question-card">
+
+            <div class="question-header">
+
+                <i class="bi bi-stars"></i>
+
+                <span>Try These Questions</span>
+
+            </div>
+
+            <div class="question-list">
+
+                <button class="question-item"
+                        data-question="Which crop is best for sandy soil?">
+
+                    Which crop is best for sandy soil?
+
+                    <i class="bi bi-chevron-right"></i>
+
+                </button>
+
+                <button class="question-item"
+                        data-question="How to control aphids in cotton?">
+                    How to control aphids in cotton?
+                    <i class="bi bi-chevron-right"></i>
+
+                </button>
+
+                <button class="question-item"
+                        data-question="Best fertilizer for tomato plants?">
+                    Best fertilizer for tomato plants?
+                    <i class="bi bi-chevron-right"></i>
+
+                </button>
+
+                <button class="question-item"
+                        data-question="Irrigation schedule for summer season?">
+                    Irrigation schedule for summer season?
+                    <i class="bi bi-chevron-right"></i>
+
+                </button>
+
+                <button class="question-item"
+                        data-question="Weather forecast for next 5 days?">
+                    Weather forecast for next 5 days?
+                    <i class="bi bi-chevron-right"></i>
+
+                </button>
+
+            </div>
+
+            <button class="explore-btn">
+
+                <i class="bi bi-grid"></i>
+
+                Explore More Questions
+
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+<script>
+
+window.onload=function(){
+
+    const chat=document.querySelector(".chat-body");
+
+    if(chat){
+
+        chat.scrollTop=chat.scrollHeight;
+
+    }
+
+}
+
+</script>
+<script>
+
+const buttons = document.querySelectorAll(".question-item");
+
+const input = document.getElementById("chatInput");
+
+const form = document.getElementById("chatForm");
+
+buttons.forEach(button => {
+
+    button.addEventListener("click", () => {
+
+        input.value = button.dataset.question;
+
+        form.submit();
+
+    });
+
+});
+
+</script>
+{% endblock %}

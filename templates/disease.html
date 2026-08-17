@@ -1,0 +1,327 @@
+{% extends "base.html" %}
+
+{% block title %}
+Plant Disease Detection
+{% endblock %}
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/modules.css') }}">
+{% endblock %}
+{% block content %}
+<section class="disease-hero">
+
+    <div class="container">
+
+        <div class="hero-wrapper">
+
+            <!-- Left Side -->
+            <div class="hero-content">
+
+                <span class="hero-badge">
+                    <i class="bi bi-shield-check"></i>
+                    AI Disease Detection
+                </span>
+
+                <h1 class="hero-title">
+                    Detect Plant Diseases
+                    <span>with AI</span>
+                </h1>
+
+                <p class="hero-description">
+                    Upload a plant leaf image and let our AI model detect diseases,
+                    estimate confidence, and recommend the best treatment within seconds.
+                </p>
+
+                <div class="hero-buttons">
+
+                    <a href="#upload-section" class="btn hero-btn-primary">
+                        <i class="bi bi-cloud-upload"></i>
+                        Upload Leaf
+                    </a>
+
+                    <a href="#disease-features" class="btn hero-btn-outline">
+                        Learn More
+                    </a>
+
+                </div>
+
+            </div>
+
+            <!-- Right Side -->
+
+            
+
+        </div>
+
+    </div>
+
+</section>
+<section class="disease-features" id="disease-features">
+
+    <div class="container">
+
+        <div class="section-title text-center">
+
+            <span class="section-badge">
+                WHY CHOOSE US
+            </span>
+
+            <h2>
+                Smart AI Disease Detection
+            </h2>
+
+            <p>
+                Built using deep learning to deliver accurate, fast and reliable
+                plant disease diagnosis for farmers and agriculture enthusiasts.
+            </p>
+
+        </div>
+
+        <div class="row g-4">
+
+            <div class="col-lg-4">
+
+                <div class="disease-feature-card">
+
+                    <div class="disease-feature-icon">
+                        <i class="bi bi-cpu"></i>
+                    </div>
+
+                    <h4>AI Powered</h4>
+
+                    <p>
+                        Deep learning model trained to recognize multiple plant diseases.
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="col-lg-4">
+
+                <div class="disease-feature-card">
+
+                    <div class="disease-feature-icon">
+                        <i class="bi bi-patch-check"></i>
+                    </div>
+
+                    <h4>High Accuracy</h4>
+
+                    <p>
+                        Reliable disease predictions with confidence scores for every upload.
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="col-lg-4">
+
+                <div class="disease-feature-card">
+
+                    <div class="disease-feature-icon">
+                        <i class="bi bi-lightning-charge"></i>
+                    </div>
+
+                    <h4>Instant Results</h4>
+
+                    <p>
+                        Upload a leaf image and receive diagnosis in just a few seconds.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+<section class="disease-upload page-section" id="upload-section">
+
+    <div class="container">
+
+        <div class="section-title text-center">
+
+            <span class="section-badge">
+                START DETECTION
+            </span>
+
+            <h2>Upload Plant Leaf</h2>
+
+            <p>
+                Upload a clear image of a plant leaf and let our AI detect diseases,
+                estimate confidence, and recommend suitable treatment.
+            </p>
+
+        </div>
+
+        <form
+            action="{{ url_for('disease.disease_prediction') }}"
+            method="POST"
+            enctype="multipart/form-data">
+
+            <div class="upload-card">
+
+                <div class="upload-icon">
+
+                    <i class="bi bi-cloud-arrow-up"></i>
+
+                </div>
+
+                <h4>Drag & Drop or Choose Image</h4>
+
+                <p>
+                    Supported formats: JPG, JPEG, PNG
+                </p>
+
+                <input
+                    type="file"
+                    name="leaf_image"
+                    id="leaf_image"
+                    accept="image/*"
+                    required
+                    class="form-control">
+
+                <button
+                    type="submit"
+                    class="btn btn-success upload-btn">
+
+                    <i class="bi bi-search"></i>
+
+                    Detect Disease
+
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</section>
+{% if disease_prediction %}
+
+<section class="ai-report page-section">
+
+    <div class="container">
+
+        <div class="report-card">
+
+            <!-- Left -->
+
+            <div class="report-image">
+
+                <img src="{{ url_for('static', filename=image_path) }}"
+                     alt="Uploaded Leaf">
+
+            </div>
+
+            <!-- Right -->
+
+            <div class="report-content">
+
+                <h2>
+                    <i class="bi bi-clipboard2-pulse-fill"></i>
+                    {{ disease_prediction }}
+                </h2>
+
+                <div class="report-meta">
+
+                    <span class="confidence-badge">
+                        <i class="bi bi-bar-chart-fill"></i>
+                        {{ disease_confidence }}%
+                    </span>
+
+                    <span class="severity-badge {{ disease_info.severity|lower|replace(' ', '-') }}">
+                        {{ disease_info.severity }}
+                    </span>
+
+                </div>
+
+                <div class="report-grid">
+
+                    <div class="report-item">
+
+                        <h5>Symptoms</h5>
+
+                        <p>
+                            {% if disease_info.symptoms is iterable and disease_info.symptoms is not string %}
+                                {{ disease_info.symptoms | join(", ") }}
+                            {% else %}
+                                {{ disease_info.symptoms }}
+                            {% endif %}
+                        </p>
+
+                    </div>
+
+                    <div class="report-item">
+
+                        <h5>Treatment</h5>
+
+                        <p>
+                            {% if disease_info.treatment is iterable and disease_info.treatment is not string %}
+                                {{ disease_info.treatment | join(", ") }}
+                            {% else %}
+                                {{ disease_info.treatment }}
+                            {% endif %}
+                        </p>
+
+                    </div>
+
+                    <div class="report-item">
+
+                        <h5>Prevention</h5>
+
+                        <p>
+                            {% if disease_info.prevention is iterable and disease_info.prevention is not string %}
+                                {{ disease_info.prevention | join(", ") }}
+                            {% else %}
+                                {{ disease_info.prevention }}
+                            {% endif %}
+                        </p>
+
+                    </div>
+
+                    <div class="report-item">
+
+                        <h5>Fertilizer</h5>
+
+                        <p>{{ disease_info.fertilizer }}</p>
+
+                    </div>
+
+                    <div class="report-item">
+
+                        <h5>Water Advice</h5>
+
+                        <p>{{ disease_info.water }}</p>
+
+                    </div>
+
+                    <div class="report-item">
+
+                        <h5>Recovery Tips</h5>
+
+                        <p>
+                            {{ disease_info.recovery if disease_info.recovery else
+                            "Continue monitoring the plant regularly and maintain proper crop care." }}
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endif %}
+
+
+
+{% endblock %}

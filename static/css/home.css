@@ -1,0 +1,1294 @@
+/*====================================================
+                    HOME PAGE
+====================================================*/
+
+
+/*====================================================
+                    PREMIUM HERO
+====================================================*/
+.hero{
+
+    position: relative;
+
+    margin: 110px auto 45px;
+
+    width: 92%;
+
+    max-width: 1400px;
+
+    height: 430px;
+
+    border-radius: 36px;
+
+    overflow: hidden;
+
+    display: flex;
+
+    align-items: center;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(6,32,18,.82) 0%,
+            rgba(6,32,18,.64) 45%,
+            rgba(6,32,18,.45) 100%
+        ),
+        url("../images/hero-banner.jpg");
+
+    background-size: cover;
+
+    background-position: center;
+
+    background-repeat: no-repeat;
+
+    box-shadow:
+        0 25px 60px rgba(0,0,0,.18);
+
+}
+.hero::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:420px;
+
+    height:420px;
+
+    left:-60px;
+
+    top:-80px;
+
+    border-radius:50%;
+
+    background:rgba(34,197,94,.18);
+
+    filter:blur(120px);
+
+}
+.hero-overlay{
+
+    position:absolute;
+
+    inset:0;
+
+    background:
+    radial-gradient(circle at 20% 25%,
+    rgba(34,197,94,.25),
+    transparent 40%),
+
+    radial-gradient(circle at 90% 15%,
+    rgba(34,197,94,.12),
+    transparent 35%),
+
+    linear-gradient(
+    135deg,
+    rgba(0,0,0,.15),
+    rgba(0,0,0,.25));
+
+}
+
+.hero .container{
+
+    position:relative;
+
+    z-index:2;
+
+}
+
+.hero-wrapper{
+
+    display:grid;
+
+    grid-template-columns:1.25fr .75fr;
+
+    align-items:center;
+
+    gap:22px;
+
+    height:100%;
+
+    padding:26px 34px;
+
+}
+/*================ LEFT =================*/
+
+/*================ LEFT =================*/
+
+.hero-content{
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    height:100%;
+
+}
+
+.hero-badge{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    width:fit-content;
+
+    padding:9px 20px;
+
+    margin-bottom:14px;
+
+    font-size:14px;
+
+    font-weight:600;
+
+    color:#d1fae5;
+
+    background:rgba(255,255,255,.10);
+
+    border:1px solid rgba(255,255,255,.15);
+
+    backdrop-filter:blur(18px);
+
+    border-radius:50px;
+
+}
+
+.hero-content h1{
+
+    font-size:50px;
+
+    font-weight:800;
+
+    line-height:1.08;
+
+    color:#ffffff;
+
+    margin:0 0 12px;
+
+    max-width:600px;
+
+}
+
+.hero-content span{
+
+    display:block;
+
+    color:#86efac;
+
+}
+
+.hero-content p{
+
+    max-width:580px;
+
+    color:rgba(255,255,255,.90);
+
+    font-size:17px;
+
+    line-height:1.75;
+
+    margin:0 0 22px;
+
+}
+
+/*====================================================
+                    HERO BUTTONS
+====================================================*/
+
+.hero-buttons{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:14px;
+
+    margin-top:12px;
+
+}
+
+/* Primary Button */
+
+.hero-buttons .btn{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:10px;
+
+    min-width:180px;
+
+    height:50px;
+
+    padding:0 30px;
+
+    border-radius:16px;
+
+    background:linear-gradient(135deg,#22c55e,#16a34a);
+
+    color:#ffffff;
+
+    font-size:16px;
+
+    font-weight:600;
+
+    text-decoration:none;
+
+    border:none;
+
+    box-shadow:0 12px 30px rgba(34,197,94,.35);
+
+    transition:.35s ease;
+
+}
+
+/* Outline Button */
+
+.hero-buttons .btn-outline{
+
+    background:rgba(255,255,255,.10);
+
+    color:#ffffff;
+
+    border:1px solid rgba(255,255,255,.25);
+
+    backdrop-filter:blur(14px);
+
+    box-shadow:none;
+
+}
+
+/* Hover */
+
+.hero-buttons .btn:hover{
+
+    transform:translateY(-4px);
+
+    box-shadow:0 18px 40px rgba(34,197,94,.45);
+
+}
+
+.hero-buttons .btn-outline:hover{
+
+    background:rgba(255,255,255,.18);
+
+    border-color:rgba(255,255,255,.45);
+
+    box-shadow:0 15px 35px rgba(255,255,255,.10);
+
+}
+
+/*====================================================
+                PREMIUM HERO RIGHT PANEL
+====================================================*/
+
+.hero-panel{
+
+    background:rgba(18,48,28,.32);
+
+    backdrop-filter:blur(22px);
+
+    -webkit-backdrop-filter:blur(22px);
+
+    border:1px solid rgba(255,255,255,.12);
+
+    padding:12px;
+
+    border-radius:28px;
+
+    position:relative;
+
+    overflow:hidden;
+
+    height:100%;
+
+    box-shadow:
+        0 18px 40px rgba(0,0,0,.18);
+
+}
+
+.hero-panel::before{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    background:linear-gradient(
+        135deg,
+        rgba(255,255,255,.05),
+        rgba(255,255,255,0)
+    );
+
+    pointer-events:none;
+
+}
+
+/*================ GRID =================*/
+
+.panel-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(2,1fr);
+
+    gap:12px;
+
+    height:100%;
+
+}
+
+/*================ CARD =================*/
+
+.panel-card{
+
+    background:#fff;
+
+    border:none;
+
+    border-top:4px solid var(--card-color);
+
+    border-radius:24px;
+
+    padding:18px 20px;
+
+    min-height:150px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    box-shadow:
+        0 8px 20px rgba(15,23,42,.08),
+        0 2px 8px rgba(15,23,42,.04);
+
+    transition:.35s ease;
+
+}
+
+.panel-card::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:0;
+
+    left:18px;
+
+    right:18px;
+
+    height:4px;
+
+    border-radius:50px;
+
+    background:var(--card-color);
+
+    z-index:10;
+
+}
+
+.panel-card:hover{
+
+    transform:translateY(-6px);
+
+    box-shadow:
+        0 18px 40px rgba(0,0,0,.12);
+
+}
+
+/* Top Accent */
+
+.panel-card::before{
+    content:"";
+    position:absolute;
+
+    top:0;
+    left:14px;
+    right:14px;
+
+    height:5px;
+
+    border-radius:50px;
+
+    background:var(--accent);
+}
+
+/* Module Colors */
+
+.crop-panel{
+    --card-color:#2E9B62;
+}
+
+.disease-panel{
+    --card-color:#A85C3A;
+}
+
+.weather-panel{
+    --card-color:#397FE8;
+}
+
+.ai-panel{
+    --card-color:#6846C7;
+}
+/* Hover */
+
+.panel-card:hover{
+
+    transform:translateY(-8px);
+
+    box-shadow:
+        0 22px 55px rgba(0,0,0,.12),
+        0 8px 20px rgba(0,0,0,.05);
+}
+
+/*================ ICON =================*/
+
+.panel-icon{
+
+    width:54px;
+
+    height:54px;
+
+    border-radius:16px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    margin-bottom:14px;
+
+    font-size:22px;
+
+}
+/* Crop */
+
+.crop-panel .panel-icon{
+
+    background:#dcfce7;
+
+    box-shadow:0 0 20px rgba(34,197,94,.18);
+
+}
+
+/* Disease */
+
+.disease-panel .panel-icon{
+
+    background:#fee2e2;
+
+    box-shadow:0 0 20px rgba(57, 28, 28, 0.18);
+
+}
+
+/* Weather */
+
+.weather-panel .panel-icon{
+
+    background:#dbeafe;
+
+    box-shadow:0 0 20px rgba(59,130,246,.18);
+
+}
+
+/* AI */
+
+.ai-panel .panel-icon{
+
+    background:#ede9fe;
+
+    box-shadow:0 0 20px rgba(139,92,246,.18);
+
+}
+
+/*================ TEXT =================*/
+
+.panel-card h3{
+
+    font-size:16px;
+
+    font-weight:700;
+
+    color:#1f2937;
+
+    line-height:1.35;
+
+    margin-bottom:6px;
+
+}
+
+.panel-card p{
+
+    font-size:13px;
+
+    color:#64748b;
+
+    line-height:1.55;
+
+}
+
+/*================ RESPONSIVE =================*/
+
+@media(max-width:1100px){
+
+.hero{
+
+    position: relative;
+
+    margin: 120px auto 45px;   /* was 40px */
+
+    width: 92%;
+
+    max-width: 1400px;
+
+    min-height: 430px;
+
+    border-radius: 40px;
+
+    overflow: hidden;
+
+    display: flex;
+
+    align-items: center;
+
+    background:
+        linear-gradient(
+            to right,
+            rgba(6,32,18,.78) 0%,
+            rgba(6,32,18,.56) 45%,
+            rgba(6,32,18,.40) 100%
+        ),
+        url("../images/hero-banner.jpg");
+
+    background-size: cover;
+    background-position: center 35%;
+    background-repeat: no-repeat;
+
+}
+
+.hero-wrapper{
+
+    grid-template-columns:1fr;
+
+}
+
+.hero-panel{
+
+    margin-top:20px;
+
+}
+
+}
+
+@media(max-width:768px){
+
+.hero{
+
+    border-radius:24px;
+
+}
+
+.hero-content{
+
+    text-align:center;
+
+}
+
+.hero-content h1{
+
+    font-size:42px;
+
+}
+
+.hero-content p{
+
+    margin:auto auto 35px;
+
+}
+
+.hero-buttons{
+
+    justify-content:center;
+
+}
+
+.panel-grid{
+
+    grid-template-columns:1fr;
+
+}
+
+}
+
+
+/*====================================================
+                    AI MODULES
+====================================================*/
+
+.ai-modules{
+    padding:50px 0 35px;
+    background:#f8fafc;
+}
+
+/*================ Heading ================*/
+
+.section-heading{
+    text-align:center;
+    margin-bottom:55px;
+}
+
+.section-badge{
+    display:inline-block;
+    padding:10px 22px;
+    background:#dcfce7;
+    color:#15803d;
+    border-radius:50px;
+    font-weight:600;
+    margin-bottom:18px;
+    font-size:15px;
+}
+
+.section-heading h2{
+    font-size:42px;
+    margin-bottom:18px;
+    color:#0f172a;
+}
+
+.section-heading p{
+    max-width:520px;
+    margin:auto;
+    color:#64748b;
+    font-size:16px;
+    line-height:1.7;
+}
+
+/*================ Grid ================*/
+
+.modules-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:30px;
+
+    margin-bottom:30px;
+
+}
+
+.modules-grid-bottom{
+
+    width:68%;
+
+    margin:auto;
+
+    display:grid;
+
+    grid-template-columns:repeat(2,1fr);
+
+    gap:30px;
+
+}
+
+/*================ Cards ================*/
+
+.module-card{
+
+    background:#fff;
+
+    border:1.5px solid rgba(34,197,94,.25);
+
+    border-radius:22px;
+
+    padding:22px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    min-height:315px;
+
+    transition:.35s ease;
+
+    box-shadow:0 12px 30px rgba(15,23,42,.06);
+
+}
+
+.module-card:hover{
+
+    transform:translateY(-8px);
+
+    box-shadow:0 20px 45px rgba(22,163,74,.15);
+
+}
+
+/*============== Border Colors ==============*/
+
+.crop-card{
+
+    border-color:#22c55e;
+
+}
+
+.disease-card{
+
+    border-color:#4e2929;
+
+}
+
+.weather-card{
+
+    border-color:#1d7af3;
+
+}
+
+.chat-card{
+
+    border-color:#4e266d;
+
+}
+
+.dashboard-card{
+
+    border-color:#14b8a6;
+
+}
+
+/*================ Icon ================*/
+
+.module-icon{
+
+    width:56px;
+
+    height:56px;
+
+    border-radius:18px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:26px;
+
+    margin-bottom:18px;
+
+}
+
+/* Individual Icon Colors */
+
+.crop-card .module-icon{
+
+    background:#dcfce7;
+
+}
+
+.disease-card .module-icon{
+
+    background:#51313122;
+
+}
+
+.weather-card .module-icon{
+
+    background:#bdd6f558;
+
+}
+
+.chat-card .module-icon{
+
+    background:#d5cef6;
+
+}
+
+.dashboard-card .module-icon{
+
+    background:#ccfbf1;
+
+}
+
+/*================ Text ================*/
+
+.module-card h3{
+
+    font-size:19px;
+
+    color:#0f172a;
+
+    margin-bottom:12px;
+
+}
+.module-card p{
+
+    color:#64748b;
+
+    line-height:1.7;
+
+    margin-bottom:18px;
+
+    min-height:54px;
+
+}
+
+/*================ Features ================*/
+
+.module-features{
+
+    list-style:none;
+
+    padding:0;
+
+    margin:0;
+
+    flex-grow:1;
+
+}
+
+.module-features li{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    margin-bottom:10px;
+
+    font-size:15px;
+
+    color:#334155;
+
+}
+
+.module-features i{
+
+    color:#16a34a;
+
+    font-size:16px;
+
+}
+
+/*================ Footer ================*/
+
+.module-footer{
+
+    margin-top:14px;
+
+    padding-top:16px;
+
+    border-top:1px solid #e5e7eb;
+
+}
+/*====================================================
+        PREMIUM MODULE BUTTONS
+====================================================*/
+
+.module-footer .btn{
+
+    width:100%;
+
+    height:46px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    gap:8px;
+
+    border-radius:12px;
+
+    font-weight:600;
+
+    transition:.35s ease;
+
+    border:1px solid transparent;
+
+}
+
+/* Crop */
+
+.crop-card .module-footer .btn{
+
+    background:#edf9f1;
+    color:#15803d;
+    border-color:#22c55e;
+
+}
+
+/* Disease */
+
+.disease-card .module-footer .btn{
+
+    background:#f5e6e6b0;
+    color:#4e2929;
+    border-color:#4e2929;
+
+}
+
+/* Weather */
+
+.weather-card .module-footer .btn{
+
+    background:#e6eef6;
+    color:#1d7af3;
+    border-color:#1d7af3;
+
+}
+
+/* Chat */
+
+.chat-card .module-footer .btn{
+
+    background:#f5f3ff;
+    color:#4e266d;
+    border-color:#4e266d;
+
+}
+
+/* Dashboard */
+
+.dashboard-card .module-footer .btn{
+
+    background:#eefcf9;
+    color:#0f766e;
+    border-color:#2dd4bf;
+
+}
+
+.module-footer .btn:hover{
+
+    transform:translateY(-2px);
+
+    filter:brightness(.98);
+
+}
+/*================ Hover Effect ================*/
+
+.crop-card:hover{
+
+    border-color:#16a34a;
+
+}
+
+.disease-card:hover{
+
+    border-color:#2a1819c6;
+
+}
+
+.weather-card:hover{
+
+    border-color:#6980e6;
+
+}
+
+.chat-card:hover{
+
+    border-color:#442776;
+
+}
+
+.dashboard-card:hover{
+
+    border-color:#0f766e;
+
+}
+
+/*================ Responsive ================*/
+
+@media(max-width:992px){
+
+.modules-grid{
+
+    grid-template-columns:1fr;
+
+}
+
+.modules-grid-bottom{
+
+    width:100%;
+
+    grid-template-columns:1fr;
+
+}
+
+.section-heading h2{
+
+    font-size:36px;
+
+}
+
+}
+
+@media(max-width:768px){
+
+.ai-modules{
+
+    padding:70px 0;
+
+}
+
+.module-card{
+
+    min-height:auto;
+
+}
+
+.section-heading h2{
+
+    font-size:32px;
+
+}
+
+.section-heading p{
+
+    font-size:16px;
+
+}
+
+}
+.hero,
+.panel-card,
+.module-card,
+.why-card,
+.btn{
+
+    transition:all .35s ease;
+
+}
+/*====================================================
+                    WHY CHOOSE
+====================================================*/
+
+.why-choose{
+
+    background:#f8fafc;
+
+    padding:25px 0 80px;
+
+}
+
+/*================ HEADING ================*/
+
+.ai-modules .section-heading{
+    text-align:center;
+    margin-bottom:70px;
+}
+
+.why-choose .section-heading{
+    max-width:760px;
+    margin:0 auto 45px;
+    text-align:center;
+}
+/*================ GRID ================*/
+
+.why-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:28px;
+
+}
+
+/*================ CARD ================*/
+
+.why-card{
+
+    background:#ffffff;
+
+    border-radius:22px;
+
+    padding:22px;
+
+    border-left:4px solid #22c55e;
+
+    box-shadow:0 10px 25px rgba(15,23,42,.06);
+
+    transition:.35s;
+
+}
+
+.why-card:hover{
+
+    transform:translateY(-6px);
+
+    box-shadow:0 18px 35px rgba(15,23,42,.12);
+
+}
+
+/*================ TITLE ================*/
+
+.why-title{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:14px;
+
+    margin-bottom:18px;
+
+}
+
+.why-title h3{
+
+    margin:0;
+
+    font-size:22px;
+
+    font-weight:700;
+
+}
+
+/*================ ICON ================*/
+
+.why-icon{
+
+    width:50px;
+
+    height:50px;
+
+    border-radius:14px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:22px;
+
+    flex-shrink:0;
+
+}
+.green{
+
+    background:#dcfce7;
+
+    color:#15803d;
+
+}
+
+.orange{
+
+    background:#fff7ed;
+
+    color:#f97316;
+
+}
+
+.blue{
+
+    background:#dbeafe;
+
+    color:#2563eb;
+
+}
+/*================ DESCRIPTION ================*/
+
+.why-card p{
+
+    margin:0;
+
+    color:#64748b;
+
+    font-size:15px;
+
+    line-height:1.8;
+
+}
+
+/*================ CARD COLORS ================*/
+
+.ai-card{
+
+    border-left-color:#22c55e;
+
+}
+
+.ai-card h3{
+
+     color:#15803d;
+
+}
+
+.green{
+
+    background:#dcfce7;
+
+     color:#4d7c0f;
+
+}
+
+/*================ SECOND ================*/
+
+.speed-card{
+
+    border-left-color:#f97316;
+
+}
+
+.speed-card h3{
+
+    color:#f97316;
+
+}
+
+.orange{
+
+    background:#fff7ed;
+
+    color:#0f766e;
+
+}
+
+/*================ THIRD ================*/
+
+.decision-card{
+
+    border-left-color:#3b82f6;
+
+}
+
+.decision-card h3{
+
+    color:#2563eb;
+
+}
+
+.blue{
+
+    background:#dbeafe;
+
+    color:#2563eb;
+
+}
+
+/*================ RESPONSIVE ================*/
+
+@media(max-width:992px){
+
+    .why-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+}

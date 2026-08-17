@@ -1,0 +1,431 @@
+{% extends "base.html" %}
+
+{% block title %}
+Crop Recommendation
+{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/modules.css') }}">
+{% endblock %}
+
+{% block content %}
+
+<!-- =========================================
+                CROP HERO
+========================================= -->
+
+<section class="crop-hero">
+
+    <div class="container">
+
+        <div class="crop-hero-wrapper">
+
+            <div class="crop-hero-content">
+
+                <span class="crop-hero-badge">
+                    <i class="bi bi-cpu"></i>
+                    AI Crop Recommendation
+                </span>
+
+                <h1 class="crop-hero-title">
+                    Grow the Right Crop
+                    <span>with AI</span>
+                </h1>
+
+                <p class="crop-hero-description">
+                    Analyze soil nutrients and environmental conditions to discover
+                    the most suitable crop for maximum productivity using our
+                    Machine Learning recommendation system.
+                </p>
+
+                <div class="crop-hero-buttons">
+
+                    <a href="#crop-form" class="btn btn-primary">
+                        <i class="bi bi-search"></i>
+                        Predict Crop
+                    </a>
+
+                    <a href="#crop-features" class="btn btn-outline-light">
+                        Learn More
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+<!-- =========================================
+            CROP FEATURES
+========================================= -->
+
+<section class="crop-features" id="crop-features">
+
+    <div class="container">
+
+        <div class="section-title text-center">
+
+            <span class="section-badge">
+                WHY CHOOSE US
+            </span>
+
+            <h2>
+                Smart AI Crop Recommendation
+            </h2>
+
+            <p>
+                Our intelligent recommendation system analyzes soil nutrients,
+                weather conditions, and environmental factors to suggest the
+                most suitable crop for higher productivity.
+            </p>
+
+        </div>
+
+        <div class="row g-4">
+
+            <div class="col-lg-4">
+
+                <div class="crop-feature-card">
+
+                    <div class="crop-feature-icon">
+                        <i class="bi bi-cpu"></i>
+                    </div>
+
+                    <h4>AI Analysis</h4>
+
+                    <p>
+                        Machine Learning analyzes soil nutrients, pH, rainfall,
+                        temperature, and humidity to identify the ideal crop.
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="col-lg-4">
+
+                <div class="crop-feature-card">
+
+                    <div class="crop-feature-icon">
+                        <i class="bi bi-flower1"></i>
+                    </div>
+
+                    <h4>Best Crop Match</h4>
+
+                    <p>
+                        Receive intelligent crop recommendations with confidence
+                        scores for better farming decisions.
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="col-lg-4">
+
+                <div class="crop-feature-card">
+
+                    <div class="crop-feature-icon">
+                        <i class="bi bi-graph-up-arrow"></i>
+                    </div>
+
+                    <h4>Higher Productivity</h4>
+
+                    <p>
+                        Select crops that match your field conditions to improve
+                        yield, profitability, and sustainable farming.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+<!-- =========================================
+                CROP FORM
+========================================= -->
+
+<section class="crop-form-section" id="crop-form">
+
+    <div class="container">
+
+        <div class="section-title text-center">
+
+            <span class="section-badge">
+                START RECOMMENDATION
+            </span>
+
+            <h2>Enter Soil Information</h2>
+
+            <p>
+                Provide your soil nutrients and environmental conditions to let our
+                AI recommend the most suitable crop for your field.
+            </p>
+
+        </div>
+
+        <div class="crop-form-card">
+
+            <div class="crop-form-header">
+
+                <div class="form-icon">
+                    <i class="bi bi-clipboard-data"></i>
+                </div>
+
+                <div>
+
+                    <h3>Soil & Environmental Parameters</h3>
+
+                    <p>
+                        Fill in all the required values for an accurate crop recommendation.
+                    </p>
+
+                </div>
+
+            </div>
+
+            <hr class="form-divider">
+
+            <form method="POST"
+                  action="{{ url_for('crop.predict') }}">
+
+                <div class="crop-input-grid">
+
+                    <div class="crop-input-group">
+                        <label><i class="bi bi-droplet-half"></i> Nitrogen (N)</label>
+                        <input type="number" name="N" required>
+                    </div>
+
+                    <div class="crop-input-group">
+                        <label><i class="bi bi-droplet-half"></i> Phosphorus (P)</label>
+                        <input type="number" name="P" required>
+                    </div>
+
+                    <div class="crop-input-group">
+                        <label><i class="bi bi-droplet-half"></i> Potassium (K)</label>
+                        <input type="number" name="K" required>
+                    </div>
+
+                    <div class="crop-input-group">
+                        <label><i class="bi bi-thermometer-half"></i> Temperature (°C)</label>
+                        <input type="number" step="0.01" name="temperature" required>
+                    </div>
+
+                    <div class="crop-input-group">
+                        <label><i class="bi bi-moisture"></i> Humidity (%)</label>
+                        <input type="number" step="0.01" name="humidity" required>
+                    </div>
+
+                    <div class="crop-input-group">
+                        <label><i class="bi bi-bezier2"></i> pH Value</label>
+                        <input type="number" step="0.01" name="ph" required>
+                    </div>
+
+                    <div class="crop-input-group">
+                        <label><i class="bi bi-cloud-rain"></i> Rainfall (mm)</label>
+                        <input type="number" step="0.01" name="rainfall" required>
+                    </div>
+
+                </div>
+
+                <button class="btn btn-success crop-submit-btn">
+
+                    <i class="bi bi-stars"></i>
+
+                    Predict Best Crop
+
+                </button>
+
+                <p class="crop-ai-note">
+
+                    <i class="bi bi-info-circle-fill"></i>
+
+                    Our AI model analyzes all parameters to recommend the most suitable crop.
+
+                </p>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</section>
+{% if prediction %}
+
+<!-- =========================================
+            CROP AI DASHBOARD
+========================================= -->
+
+<section class="crop-dashboard-section">
+
+    <div class="container">
+
+        <div class="section-title text-center">
+
+            <span class="section-badge">
+                AI RECOMMENDATION
+            </span>
+
+            <h2>Recommended Crop Result</h2>
+
+            <p>
+                Based on your soil nutrients and environmental conditions,
+                our AI recommends the following crop.
+            </p>
+
+        </div>
+
+        <div class="crop-dashboard">
+
+            <div class="crop-main">
+
+                <!-- Crop Image -->
+
+                <div class="crop-image-box">
+
+                    <img
+                        src="{{ url_for('static', filename='images/' + info.image) }}"
+                        alt="{{ prediction }}">
+
+                </div>
+
+                <!-- Crop Information -->
+
+                <div class="crop-main-info">
+
+                    <h1>{{ prediction.title() }}</h1>
+
+                    <div class="crop-badges">
+
+                        <span class="confidence-badge">
+
+                            <i class="bi bi-bar-chart-fill"></i>
+
+                            {{ confidence }}% 
+
+                        </span>
+
+                    </div>
+
+                    <hr class="crop-divider">
+
+                    <p class="crop-short-desc">
+
+                        {{ info.description }}
+
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="row g-4 mt-4">
+
+                <div class="col-lg-6">
+
+                    <div class="report-item">
+
+                        <h5>
+
+                            <i class="bi bi-calendar-event"></i>
+
+                            Growing Season
+
+                        </h5>
+
+                        <p>{{ info.season }}</p>
+
+                    </div>
+
+                </div>
+
+                <div class="col-lg-6">
+
+                    <div class="report-item">
+
+                        <h5>
+
+                            <i class="bi bi-droplet-half"></i>
+
+                            Water Requirement
+
+                        </h5>
+
+                        <p>{{ info.water }}</p>
+
+                    </div>
+
+                </div>
+
+                <div class="col-lg-6">
+
+                    <div class="report-item">
+
+                        <h5>
+
+                            <i class="bi bi-thermometer-half"></i>
+
+                            Ideal Temperature
+
+                        </h5>
+
+                        <p>{{ info.temperature }}</p>
+
+                    </div>
+
+                </div>
+
+                <div class="col-lg-6">
+
+                    <div class="report-item">
+
+                        <h5>
+
+                            <i class="bi bi-bezier2"></i>
+
+                            Soil pH
+
+                        </h5>
+
+                        <p>{{ info.ph }}</p>
+
+                    </div>
+
+                </div>
+
+                <div class="col-lg-12">
+
+                    <div class="report-item">
+
+                        <h5>
+
+                            <i class="bi bi-flower1"></i>
+
+                            Recommended Fertilizer
+
+                        </h5>
+
+                        <p>{{ info.fertilizer }}</p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endif %}
+{% endblock %}

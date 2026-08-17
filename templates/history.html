@@ -1,0 +1,269 @@
+{% extends "base.html" %}
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/history.css') }}">
+{% endblock %}
+{% block title %}
+Prediction History
+{% endblock %}
+
+{% block content %}
+
+<section class="history-section">
+
+    <div class="container">
+
+
+
+    <!-- ================= HISTORY HERO ================= -->
+
+        <div class="history-page">
+
+            <section class="history-hero">
+
+                <div class="hero-overlay"></div>
+
+                <div class="row align-items-center">
+
+                    <div class="col-lg-7">
+
+                        <div class="history-hero-content">
+
+                            <span class="hero-badge">
+                                <i class="bi bi-clock-history"></i>
+                                AI Prediction Records
+                            </span>
+
+                            <h1>
+                                Prediction
+                                <span>History</span>
+                            </h1>
+
+                            <p>
+                                Explore all your previous crop recommendations,
+                                disease detections, and weather forecasts in one
+                                organized dashboard.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                    <div class="col-lg-5 text-center">
+
+                        <div class="hero-illustration">
+
+                            <i class="bi bi-clock-history"></i>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+
+        
+    <!-- =====================================================
+                        SEARCH TOOLBAR
+        ====================================================== -->
+        <form method="GET">
+        <div class="history-toolbar">
+
+            <div class="row g-3 align-items-center">
+
+                <div class="col-lg-4">
+
+                    <div class="search-box">
+
+                        <i class="bi bi-search"></i>
+
+                        <input
+                            type="text"
+                            name="search"
+                            class="form-control"
+                            placeholder="Search your history..."
+                            value="{{ request.args.get('search','') }}"
+                        >
+
+                    </div>
+
+                </div>
+
+                <div class="col-lg-3">
+
+                    <select
+                        class="form-select"
+                        name="type">
+
+                        <option value="all"
+                        {% if request.args.get('type','all')=="all" %}selected{% endif %}>
+                            🌿 All Predictions
+                        </option>
+
+                        <option value="crop"
+                        {% if request.args.get('type')=="crop" %}selected{% endif %}>
+                            🌾 Crop Recommendation
+                        </option>
+
+                        <option value="disease"
+                        {% if request.args.get('type')=="disease" %}selected{% endif %}>
+                            🍃 Disease Detection
+                        </option>
+
+                        <option value="weather"
+                        {% if request.args.get('type')=="weather" %}selected{% endif %}>
+                            🌦 Weather Forecast
+                        </option>
+
+                    </select>
+
+                </div>
+
+                <div class="col-lg-3">
+
+                    <input
+                    type="date"
+                    name="date"
+                    class="form-control"
+                    value="{{ request.args.get('date','') }}">
+
+                </div>
+
+                <div class="col-lg-2">
+
+                    <button
+                    type="submit"
+                    class="btn history-search-btn w-100">
+
+
+                        <i class="bi bi-funnel-fill"></i>
+
+                        Filter
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+        </form>
+    <!-- ==========================================
+                PREDICTION HISTORY
+    ========================================== -->
+
+    <div class="history-list">
+
+        {% for item in history_data %}
+
+        <div class="history-item
+        {% if item.type == 'Crop Recommendation' %}
+        crop-card
+        {% elif item.type == 'Disease Detection' %}
+        disease-card
+        {% else %}
+        weather-card
+        {% endif %}">
+
+            <div class="history-icon">
+
+                {{ item.icon }}
+
+            </div>
+
+            <div class="history-content">
+
+                <div class="history-header">
+
+                    <span class="history-type badge bg-{{ item.color }}">
+
+                        {{ item.type }}
+
+                    </span>
+
+                    <span class="history-date">
+
+                        {{ item.date }}
+
+                    </span>
+
+                </div>
+
+                <h5>{{ item.title }}</h5>
+
+                <p>{{ item.subtitle }}</p>
+
+            </div>
+
+            <div class="history-confidence">
+
+                {{ item.confidence }}
+
+            </div>
+
+        <div class="history-actions">
+
+                <button
+                    class="btn btn-success"
+                    data-bs-toggle="tooltip"
+                    title="View Details">
+
+                    <i class="bi bi-eye"></i>
+
+                </button>
+
+                <a
+                    href="{{ url_for(
+                        'history.delete_history',
+                        history_type='crop' if item.type=='Crop Recommendation'
+                        else 'disease' if item.type=='Disease Detection'
+                        else 'weather',
+                        record_id=item.id
+                    ) }}"
+                    class="btn btn-danger"
+                    onclick="return confirm('Are you sure you want to delete this record?')"
+                    data-bs-toggle="tooltip"
+                    title="Delete Record">
+
+                    <span>🗑️</span>
+                </a>
+
+            </div>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+
+
+
+
+<script>
+
+document.addEventListener("DOMContentLoaded", function(){
+
+    var tooltipTriggerList = [].slice.call(
+        document.querySelectorAll('[data-bs-toggle="tooltip"]')
+    );
+
+    tooltipTriggerList.map(function(el){
+
+        return new bootstrap.Tooltip(el);
+
+    });
+
+});
+
+</script>
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

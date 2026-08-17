@@ -1,0 +1,36 @@
+# Environment variables / secrets
+.env
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+venv/
+.venv/
+env/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Uploaded/generated files
+static/uploads/*
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+
+# Local database
+database/farming.db
+
+# PlantVillage training dataset
+database/PlantVillage/
+
+# Local diagnostic scripts
+check_models.py
+check_openai.py
+test_gemini.py

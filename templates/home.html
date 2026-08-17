@@ -1,0 +1,457 @@
+{% extends "base.html" %}
+
+{% block title %}
+Home
+{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
+{% endblock %}
+
+{% block content %}
+<!--====================================================
+                    PREMIUM HERO
+=====================================================-->
+
+<section class="hero">
+
+    <div class="hero-overlay"></div>
+
+    <div class="container">
+
+        <div class="hero-wrapper">
+
+            <!--================ LEFT CONTENT ================-->
+
+            <div class="hero-content fade-up">
+
+                <span class="hero-badge">
+
+                    <i class="fa-solid fa-seedling"></i>
+
+                    AI Powered Smart Agriculture
+
+                </span>
+
+                <h1>
+
+                    Farming Smarter with
+
+                    <span>Artificial Intelligence</span>
+
+                </h1>
+
+                <p>
+
+                    AI Farming Assistant combines Machine Learning,
+                    Deep Learning, Weather Intelligence and Smart
+                    Analytics into one intelligent platform that helps
+                    farmers make faster, smarter and data-driven decisions.
+
+                </p>
+
+                <div class="hero-buttons">
+
+                    <a href="{{ url_for('crop.crop') }}" class="btn">
+
+                        <i class="fa-solid fa-seedling"></i>
+
+                        Start Prediction
+
+                    </a>
+
+                    <a href="{{ url_for('about.about') }}"
+                       class="btn btn-outline">
+
+                        Learn More
+
+                        <i class="fa-solid fa-arrow-right"></i>
+
+                    </a>
+
+                </div>
+
+            </div>
+
+            <!--================ RIGHT PANEL ================-->
+
+            <div class="hero-panel fade-up">
+
+                <div class="panel-grid">
+
+                    <!-- CARD 1 -->
+
+                    <div class="panel-card crop-panel">
+
+                        <div class="panel-icon">
+
+                            🌱
+
+                        </div>
+
+                        <h3>
+
+                            Crop Recommendation
+
+                        </h3>
+
+                        <p>
+
+                            22+ Supported Crops
+
+                        </p>
+
+                    </div>
+
+                    <!-- CARD 2 -->
+
+                    <div class="panel-card disease-panel">
+
+                        <div class="panel-icon">
+
+                            🍃
+
+                        </div>
+
+                        <h3>
+
+                            Disease Detection
+
+                        </h3>
+
+                        <p>
+
+                            15 Plant Disease Classes
+
+                        </p>
+
+                    </div>
+
+                    <!-- CARD 3 -->
+
+                    <div class="panel-card weather-panel">
+
+                        <div class="panel-icon">
+
+                            🌦
+
+                        </div>
+
+                        <h3>
+
+                            Weather Intelligence
+
+                        </h3>
+
+                        <p>
+
+                            Live Forecast & Farming Insights
+
+                        </p>
+
+                    </div>
+
+                    <!-- CARD 4 -->
+
+                    <div class="panel-card ai-panel">
+
+                        <div class="panel-icon">
+
+                            ⚡
+
+                        </div>
+
+                        <h3>
+
+                            AI Powered
+
+                        </h3>
+
+                        <p>
+
+                            Fast Predictions in Seconds
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+<!--====================================================
+                    AI MODULES
+=====================================================-->
+
+<section class="ai-modules">
+
+    <div class="container">
+
+        <div class="section-heading">
+
+            <span class="section-badge">
+                Our AI Modules
+            </span>
+
+            <h2>Explore Intelligent Farming Solutions</h2>
+
+            <p>
+                Everything a modern farmer needs in one intelligent platform.
+            </p>
+
+        </div>
+
+        <!-- ================= TOP ROW ================= -->
+
+        <div class="modules-grid">
+
+            <!-- Crop Recommendation -->
+
+            <div class="module-card crop-card">
+
+                <div class="module-icon">🌱</div>
+
+                <h3>Crop Recommendation</h3>
+
+                <p>
+                    Recommend the most suitable crop using AI and environmental data.
+                </p>
+
+                <ul class="module-features">
+                    <li><i class="fas fa-check-circle"></i> Best Crop Selection</li>
+                    <li><i class="fas fa-check-circle"></i> Crop Guidance</li>
+                    <li><i class="fas fa-check-circle"></i> Smart AI Prediction</li>
+                </ul>
+
+                <div class="module-footer">
+                    <a href="{{ url_for('crop.crop') }}" class="btn">
+                        Open Module <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+
+            </div>
+
+            <!-- Disease Detection -->
+
+            <div class="module-card disease-card">
+
+                <div class="module-icon">🍃</div>
+
+                <h3>Disease Detection</h3>
+
+                <p>
+                    Detect plant diseases instantly using deep learning image analysis.
+                </p>
+
+                <ul class="module-features">
+                    <li><i class="fas fa-check-circle"></i> Disease Identification</li>
+                    <li><i class="fas fa-check-circle"></i> Treatment Guidance</li>
+                    <li><i class="fas fa-check-circle"></i> Prevention Tips</li>
+                </ul>
+
+                <div class="module-footer">
+                    <a href="{{ url_for('disease.disease') }}" class="btn">
+                        Open Module <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+
+            </div>
+
+            <!-- Weather Forecast -->
+
+            <div class="module-card weather-card">
+
+                <div class="module-icon">🌦</div>
+
+                <h3>Weather Forecast</h3>
+
+                <p>
+                    Get live weather updates and intelligent farming recommendations.
+                </p>
+
+                <ul class="module-features">
+                    <li><i class="fas fa-check-circle"></i> Live Weather</li>
+                    <li><i class="fas fa-check-circle"></i> Farming Advice</li>
+                    <li><i class="fas fa-check-circle"></i> Weather Alerts</li>
+                </ul>
+
+                <div class="module-footer">
+                    <a href="{{ url_for('weather.weather') }}" class="btn">
+                        Open Module <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- ================= BOTTOM ROW ================= -->
+
+        <div class="modules-grid modules-grid-bottom">
+
+            <!-- AI Chat -->
+
+            <div class="module-card chat-card">
+
+                <div class="module-icon">🤖</div>
+
+                <h3>AI Chat Assistant</h3>
+
+                <p>
+                    Your intelligent farming companion for instant agricultural support.
+                </p>
+
+                <ul class="module-features">
+                    <li><i class="fas fa-check-circle"></i> Smart Farming Help</li>
+                    <li><i class="fas fa-check-circle"></i> Crop Guidance</li>
+                    <li><i class="fas fa-check-circle"></i> Instant AI Responses</li>
+                </ul>
+
+                <div class="module-footer">
+                    <a href="{{ url_for('chatbot.chatbot') }}" class="btn">
+                        Open Module <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+
+            </div>
+
+            <!-- Dashboard -->
+
+            <div class="module-card dashboard-card">
+
+                <div class="module-icon">📊</div>
+
+                <h3>Analytics Dashboard</h3>
+
+                <p>
+                    Monitor predictions and farming insights through interactive analytics.
+                </p>
+
+                <ul class="module-features">
+                    <li><i class="fas fa-check-circle"></i> Prediction History</li>
+                    <li><i class="fas fa-check-circle"></i> AI Insights</li>
+                    <li><i class="fas fa-check-circle"></i> Smart Reports</li>
+                </ul>
+
+                <div class="module-footer">
+                    <a href="{{ url_for('dashboard.dashboard') }}" class="btn">
+                        Open Module <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+<!--====================================================
+                WHY CHOOSE AI FARMING ASSISTANT
+=====================================================-->
+
+<section class="why-choose">
+
+    <div class="container">
+
+        <div class="section-heading">
+
+            <span class="section-badge">
+                Why Choose Us
+            </span>
+
+            <h2>Why Choose AI Farming Assistant?</h2>
+
+            <p>
+                Smart, accurate and AI-powered tools designed to support modern farming.
+                From intelligent crop recommendations to disease detection and weather
+                forecasting, everything you need is available in one platform.
+            </p>
+
+        </div>
+
+        <div class="why-grid">
+
+            <!-- Card 1 -->
+
+            <div class="why-card ai-card">
+
+                <div class="why-title">
+
+                    <div class="why-icon green">
+                        🤖
+                    </div>
+
+                    <h3>AI Powered</h3>
+
+                </div>
+
+                <p>
+
+                    Machine Learning and Deep Learning models provide intelligent
+                    agricultural recommendations for modern farming.
+
+                </p>
+
+            </div>
+
+            <!-- Card 2 -->
+
+            <div class="why-card speed-card">
+
+                <div class="why-title">
+
+                    <div class="why-icon orange">
+
+                        ⚡
+
+                    </div>
+
+                    <h3>Fast Prediction</h3>
+
+                </div>
+
+                <p>
+
+                    Receive crop recommendations, disease detection and weather
+                    insights within seconds.
+
+                </p>
+
+            </div>
+
+            <!-- Card 3 -->
+
+            <div class="why-card decision-card">
+
+                <div class="why-title">
+
+                    <div class="why-icon blue">
+
+                        💡
+                    </div>
+
+                    <h3>Better Decisions</h3>
+
+                </div>
+
+                <p>
+
+                    Weather forecasting and prediction history help farmers
+                    make informed farming decisions.
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+{% endblock %}

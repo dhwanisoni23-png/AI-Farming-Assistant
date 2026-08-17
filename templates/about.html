@@ -1,0 +1,396 @@
+{% extends "base.html" %}
+
+{% block title %}
+About
+{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/info.css') }}">
+{% endblock %}
+
+{% block content %}
+
+<div class="about-page">
+
+    <!-- =====================================================
+         ABOUT HERO
+    ====================================================== -->
+
+    <section class="about-hero">
+
+        <div class="about-hero-overlay"></div>
+
+        <div class="about-hero-content">
+
+            <div class="about-breadcrumb">
+                <span>Home</span>
+                <i class="bi bi-chevron-right"></i>
+                <span>About Us</span>
+            </div>
+
+            <div class="about-hero-text">
+
+                <div class="about-hero-badge">
+                    <i class="bi bi-stars"></i>
+                    AI Farming Platform
+                </div>
+
+                <h1 class="about-heading">
+                    About <span>AI Farming</span><br>
+                    Assistant
+                </h1>
+
+                <p>
+                    AI Farming Assistant is an intelligent agricultural platform
+                    that combines Machine Learning, Deep Learning, Weather Analytics
+                    and AI-powered solutions to help farmers make smarter decisions.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- =====================================================
+     ABOUT - PREMIUM INFORMATION CARDS
+    ===================================================== -->
+
+    <section class="about-info-section">
+
+        <div class="about-premium-card overview-card">
+
+            <div class="overview-header">
+
+                <div class="overview-title-group">
+
+                    <div class="about-card-icon">
+                        📖
+                    </div>
+
+                    <div>
+                        <h2>Overview</h2>
+                        <div class="card-line"></div>
+                    </div>
+
+                </div>
+
+                <span class="card-label">PLATFORM</span>
+
+            </div>
+
+
+            <p class="overview-description">
+                AI Farming Assistant is an intelligent web application that
+                combines Machine Learning, Deep Learning and Weather
+                Forecasting to help farmers make smarter agricultural decisions.
+            </p>
+
+
+            <div class="overview-stats">
+
+                <div class="overview-stat">
+                    <strong>AI</strong>
+                    <span>Powered Platform</span>
+                </div>
+
+                <div class="overview-stat">
+                    <strong>Smart</strong>
+                    <span>Farming Support</span>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="about-card objectives-card">
+
+            <!-- HEADER -->
+            <div class="about-card-header">
+
+                <div class="about-card-title">
+
+                    <div class="about-card-icon objectives-icon">
+                        🎯
+                    </div>
+
+                    <div class="about-card-heading">
+                        <h2>Objectives</h2>
+                        <span class="about-card-line objectives-line"></span>
+                    </div>
+
+                </div>
+
+                <span class="about-card-label objectives-label">
+                    GOALS
+                </span>
+
+            </div>
+
+
+            <!-- OBJECTIVES -->
+            <div class="objectives-grid">
+
+                <div class="objective-item">
+                    <span class="objective-number">01</span>
+                    <span>Crop Recommendation</span>
+                </div>
+
+                <div class="objective-item">
+                    <span class="objective-number">02</span>
+                    <span>Disease Detection</span>
+                </div>
+
+                <div class="objective-item">
+                    <span class="objective-number">03</span>
+                    <span>Weather Forecast</span>
+                </div>
+
+                <div class="objective-item">
+                    <span class="objective-number">04</span>
+                    <span>Dashboard Analytics</span>
+                </div>
+
+                <div class="objective-item">
+                    <span class="objective-number">05</span>
+                    <span>Smart Farming Support</span>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- AI MODULES -->
+        <div class="about-premium-card about-card-red">
+
+            <div class="about-card-header">
+
+                <div class="about-card-title">
+                    <div class="about-card-icon">
+                        ⚙️
+                    </div>
+
+                    <div>
+                        <h2>AI Modules</h2>
+                        <div class="about-card-line"></div>
+                    </div>
+                </div>
+
+                <span class="about-card-tag">AI SYSTEM</span>
+
+            </div>
+
+
+            <div class="about-module-grid">
+
+                <a href="/crop" class="module-item module-green">
+                    <span class="module-icon">🌱</span>
+                    <div>
+                        <strong>Crop</strong>
+                        <small>Recommendation</small>
+                    </div>
+                </a>
+
+                <a href="/disease" class="module-item module-red">
+                    <span class="module-icon">🍃</span>
+                    <div>
+                        <strong>Disease</strong>
+                        <small>Detection</small>
+                    </div>
+                </a>
+
+                <a href="/weather" class="module-item module-blue">
+                    <span class="module-icon">🌦️</span>
+                    <div>
+                        <strong>Weather</strong>
+                        <small>Forecast</small>
+                    </div>
+                </a>
+
+                <a href="/dashboard" class="module-item module-purple">
+                    <span class="module-icon">📊</span>
+                    <div>
+                        <strong>Dashboard</strong>
+                        <small>Analytics</small>
+                    </div>
+                </a>
+
+                <a href="/chatbot" class="module-item module-violet">
+                    <span class="module-icon">🤖</span>
+                    <div>
+                        <strong>AI Assistant</strong>
+                        <small>Smart Support</small>
+                    </div>
+                </a>
+
+            </div>
+
+        </div>
+
+    <!-- =====================================================
+        TECHNOLOGY STACK CARD
+    ===================================================== -->
+
+    <section class="about-card tech-stack-card">
+
+        <div class="about-card-header">
+
+            <div class="about-card-title">
+
+                <div class="about-card-icon tech-icon">
+                    💻
+                </div>
+
+                <div>
+                    <h2>Technology Stack</h2>
+                    <span class="about-card-line"></span>
+                </div>
+
+            </div>
+
+            <span class="about-card-badge tech-badge">
+                DEVELOPMENT
+            </span>
+
+        </div>
+
+
+        <div class="tech-stack-grid">
+
+            <div class="tech-item">
+                <span class="tech-item-icon">🐍</span>
+                <span>Python</span>
+            </div>
+
+            <div class="tech-item">
+                <span class="tech-item-icon">⚡</span>
+                <span>Flask</span>
+            </div>
+
+            <div class="tech-item">
+                <span class="tech-item-icon">🧠</span>
+                <span>TensorFlow / Keras</span>
+            </div>
+
+            <div class="tech-item">
+                <span class="tech-item-icon">📱</span>
+                <span>MobileNetV2</span>
+            </div>
+
+            <div class="tech-item">
+                <span class="tech-item-icon">🌲</span>
+                <span>Random Forest</span>
+            </div>
+
+            <div class="tech-item">
+                <span class="tech-item-icon">📊</span>
+                <span>Pandas / NumPy</span>
+            </div>
+
+            <div class="tech-item">
+                <span class="tech-item-icon">🌦️</span>
+                <span>OpenWeather API</span>
+            </div>
+
+            <div class="tech-item">
+                <span class="tech-item-icon">✨</span>
+                <span>Google Gemini AI</span>
+            </div>
+
+            <div class="tech-item">
+                <span class="tech-item-icon">🗄️</span>
+                <span>SQLite</span>
+            </div>
+
+            <div class="tech-item">
+                <span class="tech-item-icon">🌐</span>
+                <span>HTML / CSS / JS</span>
+            </div>
+
+        </div>
+
+    </section>
+    
+    <!-- =========================
+     ABOUT / DEVELOPER SECTION
+    ========================= -->
+    <section class="developer-section">
+
+        <div class="developer-card">
+
+            <!-- LEFT : PROFILE VISUAL -->
+            <div class="developer-visual">
+
+                <div class="developer-glow"></div>
+
+                <div class="developer-avatar">
+                    <span>DS</span>
+                </div>
+
+                <div class="developer-status">
+                    <span class="status-dot"></span>
+                    AI / ML Developer
+                </div>
+
+            </div>
+
+
+            <!-- RIGHT : INFORMATION -->
+            <div class="developer-content">
+
+                <div class="developer-top">
+                    <span class="developer-label">DEVELOPER</span>
+                </div>
+
+                <h2>Dhwani Soni</h2>
+
+                <h3>
+                    Bachelor of Artificial Intelligence &amp; Machine Learning
+                </h3>
+
+                <p>
+                    AI enthusiast passionate about developing intelligent solutions
+                    using Machine Learning, Deep Learning, Flask, TensorFlow and
+                    modern web technologies. This AI Farming Assistant demonstrates
+                    practical skills in AI development, web application integration,
+                    weather forecasting and responsive UI design.
+                </p>
+
+                <div class="developer-skills">
+                    <span>🤖 AI / ML</span>
+                    <span>🧠 Deep Learning</span>
+                    <span>🌱 Smart Agriculture</span>
+                    <span>💻 Web Development</span>
+                </div>
+
+                <div class="developer-actions">
+
+                    <a href="https://github.com/dhwanisoni23-png/AI-Farming-Assistant"
+                    class="developer-btn github-btn"
+                    target="_blank"
+                    rel="noopener noreferrer">
+                        <span>◉</span>
+                        GitHub
+                    </a>
+
+                    <a href="https://www.linkedin.com/in/dhwani-soni23"
+                    class="developer-btn linkedin-btn"
+                    target="_blank"
+                    rel="noopener noreferrer">
+                        <span>in</span>
+                        LinkedIn
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+    
+</div>
+
+{% endblock %}

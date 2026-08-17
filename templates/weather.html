@@ -1,0 +1,497 @@
+{% extends "base.html" %}
+
+{% block title %}
+Weather Forecast
+{% endblock %}
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/modules.css') }}">
+{% endblock %}
+{% block content %}
+
+<section class="weather-hero">
+
+    <div class="weather-overlay"></div>
+
+    <div class="container position-relative">
+
+        <div class="row align-items-center">
+
+            <!-- Left Side -->
+
+            <div class="col-lg-7">
+
+                <nav class="weather-breadcrumb">
+                    Home
+                    <span>›</span>
+                    Weather Forecast
+                </nav>
+
+                <h1 class="weather-heading">
+                    Weather
+                    <span>Forecast</span>
+                </h1>
+
+                <p class="weather-description">
+                    Get accurate real-time weather updates,
+                    forecasts, and insights to make smarter
+                    farming decisions every day.
+                </p>
+
+                <form
+                    action="{{ url_for('weather.weather') }}"
+                    method="POST"
+                    class="weather-search">
+
+                    <input
+                        type="text"
+                        name="city"
+                        placeholder="Enter city name..."
+                        required>
+
+                    <button type="submit">
+                        Get Weather
+                    </button>
+
+                </form>
+
+                {% if error %}
+                <div class="error-box mt-4">
+                    {{ error }}
+                </div>
+                {% endif %}
+
+            </div>
+
+            <!-- Right Side -->
+
+            <div class="col-lg-5">
+
+                <div class="weather-glance-card">
+
+                    <h4>Weather at a Glance</h4>
+
+                    <div class="glance-grid">
+
+                        <div class="glance-item">
+                            <i class="bi bi-thermometer-half"></i>
+
+                            <div>
+                                <h5>
+                                    {% if weather %}
+                                        {{ weather.temperature }}°C
+                                    {% else %}
+                                        --
+                                    {% endif %}
+                                </h5>
+
+                                <small>Temperature</small>
+                            </div>
+
+                        </div>
+
+                        <div class="glance-item">
+
+                            <i class="bi bi-droplet"></i>
+
+                            <div>
+
+                                <h5>
+
+                                    {% if weather %}
+                                        {{ weather.humidity }}%
+                                    {% else %}
+                                        --
+                                    {% endif %}
+
+                                </h5>
+
+                                <small>Humidity</small>
+
+                            </div>
+
+                        </div>
+
+                        <div class="glance-item">
+
+                            <i class="bi bi-wind"></i>
+
+                            <div>
+
+                                <h5>
+
+                                    {% if weather %}
+                                        {{ weather.wind }} m/s
+                                    {% else %}
+                                        --
+                                    {% endif %}
+
+                                </h5>
+
+                                <small>Wind Speed</small>
+
+                            </div>
+
+                        </div>
+
+                        <div class="glance-item">
+
+                            <i class="bi bi-cloud-sun"></i>
+
+                            <div>
+
+                                <h5>
+
+                                    {% if weather %}
+                                        {{ weather.description }}
+                                    {% else %}
+                                        --
+                                    {% endif %}
+
+                                </h5>
+
+                                <small>Condition</small>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+<section class="weather-intro">
+    <div class="container">
+
+        <div class="section-tag">
+            WHY CHOOSE US
+        </div>
+
+        <h2 class="section-title">
+            Smart Weather Forecast
+        </h2>
+
+        <p class="section-description">
+            Get accurate real-time weather forecasts, humidity, temperature,
+            wind speed, and 5-day predictions to help farmers make smarter
+            irrigation, crop planning, and harvesting decisions.
+        </p>
+
+    </div>
+</section>
+<section class="weather-features">
+
+    <div class="container">
+
+        <div class="row g-4">
+
+            <div class="col-lg-4">
+
+                <div class="weather-feature-card">
+
+                    <div class="weather-feature-icon">
+                        <i class="bi bi-bullseye"></i>
+                    </div>
+
+                    
+
+                        <h3>Accurate & Reliable</h3>
+
+                        <p>
+                            Real-time weather data from trusted
+                            weather sources for better farming decisions.
+                        </p>
+
+                    
+
+                </div>
+
+            </div>
+
+            <div class="col-lg-4">
+
+                <div class="weather-feature-card">
+
+                    <div class="weather-feature-icon">
+                        <i class="bi bi-tree"></i>
+                    </div>
+
+                    
+
+                        <h3>Farm Focused Insights</h3>
+
+                        <p>
+                            Weather information specially organized
+                            for agriculture and crop management.
+                        </p>
+
+                    
+
+                </div>
+
+            </div>
+
+            <div class="col-lg-4">
+
+                <div class="weather-feature-card">
+
+                    <div class="weather-feature-icon">
+                        <i class="bi bi-calendar-week"></i>
+                    </div>
+
+                    
+
+                        <h3>5-Day Forecast</h3>
+
+                        <p>
+                            Plan irrigation and harvesting with
+                            upcoming weather predictions.
+                        </p>
+
+                    
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+<section class="weather-main">
+
+<div class="container">
+
+<div class="row g-4">
+
+<!-- Current Weather -->
+
+<div class="col-lg-5">
+
+<div class="current-weather-card">
+
+{% if weather %}
+
+<div class="current-top">
+
+<img
+    src="https://openweathermap.org/img/wn/{{ weather.icon }}@4x.png"
+    class="current-icon">
+
+<div>
+
+<h2>{{ weather.temperature | round | int }}°C</h2>
+
+<h4>{{ weather.description }}</h4>
+
+<p>
+
+📍 {{ weather.city }}, {{ weather.country }}
+
+</p>
+
+<small class="weather-date">
+
+Monday • 21 July 2026
+
+</small>
+</div>
+
+</div>
+
+<div class="weather-mini-grid">
+
+<div class="mini-box">
+
+<i class="bi bi-thermometer-half"></i>
+
+<h6>Feels Like</h6>
+
+<p>{{ weather.feels_like | round | int }}°C</p>
+
+</div>
+
+<div class="mini-box">
+
+<i class="bi bi-droplet"></i>
+
+<h6>Humidity</h6>
+
+<p>{{ weather.humidity }}%</p>
+
+</div>
+
+<div class="mini-box">
+
+<i class="bi bi-wind"></i>
+
+<h6>Wind</h6>
+
+<p>{{ weather.wind }} m/s</p>
+
+</div>
+
+<div class="mini-box">
+
+<i class="bi bi-speedometer2"></i>
+
+<h6>Pressure</h6>
+
+<p>{{ weather.pressure }} hPa</p>
+
+</div>
+
+</div>
+
+{% else %}
+
+<div class="empty-weather">
+
+<i class="bi bi-cloud-sun"></i>
+
+<h3>No Weather Yet</h3>
+
+<p>Search a city above to view weather details.</p>
+
+</div>
+
+{% endif %}
+
+</div>
+
+</div>
+
+<!-- Forecast -->
+
+<div class="col-lg-7">
+
+<div class="forecast-card">
+
+<div class="forecast-header">
+
+<h3>5-Day Forecast</h3>
+
+
+
+</div>
+
+<div class="forecast-grid">
+
+{% if forecast %}
+
+{% for day in forecast %}
+
+<div class="forecast-day">
+
+    <h6>{{ day.day }}</h6>
+
+    <img
+        src="https://openweathermap.org/img/wn/{{ day.icon }}@2x.png"
+        class="forecast-icon">
+
+    <h4 class="forecast-temp">
+        {{ day.temp }}°
+    </h4>
+
+    <p>{{ day.description }}</p>
+
+</div>
+
+{% endfor %}
+
+{% else %}
+
+<div class="forecast-empty">
+
+    <i class="bi bi-cloud-sun"></i>
+
+    <h5>No Forecast Available</h5>
+
+</div>
+
+{% endif %}
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+<!--=========================================
+WHY WEATHER MATTERS
+==========================================-->
+
+<section class="weather-benefits">
+
+    <div class="section-title text-center mb-5">
+        <h2>Why Weather Matters for Farming</h2>
+        <p>
+            Real-time weather information helps farmers make smarter decisions,
+            improve crop health, and increase productivity.
+        </p>
+    </div>
+
+    <div class="row justify-content-center g-4">
+
+        <div class="col-xl-3 col-lg-5 col-md-6">
+            <div class="benefit-card">
+                <i class="bi bi-droplet-half"></i>
+                <h4>Irrigation Planning</h4>
+                <p><span class="benefit-tag">💧 Water Saving</span>
+                    Schedule irrigation efficiently based on rainfall and
+                    temperature forecasts to save water.
+                </p>
+            </div>
+        </div>
+
+        <div class="col-xl-3 col-lg-5 col-md-6">
+            <div class="benefit-card">
+                <i class="bi bi-bug"></i>
+                <h4>Pest & Disease Alerts</h4>
+                <p><span class="benefit-tag">🐛 Early Detection</span>
+                    Humidity and temperature trends help identify conditions
+                    favorable for pest attacks and crop diseases.
+                </p>
+            </div>
+        </div>
+
+        <div class="col-xl-3 col-lg-5 col-md-6">
+            <div class="benefit-card">
+                <i class="bi bi-tree"></i>
+                <h4>Crop Health</h4>
+                <p><span class="benefit-tag">🌱 Healthy Crops</span>
+                    Monitor environmental conditions to keep crops healthy
+                    throughout the growing season.
+                </p>
+            </div>
+        </div>
+
+        <div class="col-xl-3 col-lg-5 col-md-6">
+            <div class="benefit-card">
+                <i class="bi bi-truck"></i>
+                <h4>Harvest Planning</h4>
+                <p><span class="benefit-tag">🚜 Smart Harvest</span>
+                    Plan harvesting activities around weather conditions to
+                    reduce crop losses.
+                </p>
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+
+{% endblock %}

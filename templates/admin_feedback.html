@@ -1,0 +1,339 @@
+{% extends "base.html" %}
+
+{% block title %}
+Admin Feedback
+{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/info.css') }}">
+{% endblock %}
+
+{% block content %}
+
+<section class="admin-feedback-page">
+
+    <!-- HEADER -->
+
+    <div class="admin-header">
+
+        <div>
+            <span class="admin-label">
+                <i class="bi bi-shield-lock-fill"></i>
+                ADMIN PANEL
+            </span>
+
+            <h1>Contact Feedback</h1>
+
+            <p>
+                View feedback, messages and ratings submitted
+                through AI Farming Assistant.
+            </p>
+        </div>
+
+        <div class="admin-badge">
+            <i class="bi bi-database-fill-check"></i>
+            LIVE DATABASE
+        </div>
+
+    </div>
+
+
+    <!-- STAT CARDS -->
+
+    <div class="admin-stats">
+
+        <div class="admin-stat-card">
+
+            <div class="admin-stat-icon">
+                <i class="bi bi-chat-left-text-fill"></i>
+            </div>
+
+            <div>
+                <span>Total Feedback</span>
+                <strong>{{ feedback|length }}</strong>
+            </div>
+
+        </div>
+
+
+        <div class="admin-stat-card">
+
+            <div class="admin-stat-icon rating-icon-admin">
+                <i class="bi bi-star-fill"></i>
+            </div>
+
+            <div>
+                <span>Total Ratings</span>
+                <strong>{{ total_ratings }}</strong>
+            </div>
+
+        </div>
+
+
+        <div class="admin-stat-card">
+
+            <div class="admin-stat-icon rating-icon-admin">
+                <i class="bi bi-award-fill"></i>
+            </div>
+
+            <div>
+                <span>Average Rating</span>
+                <strong>
+                    {{ average_rating }}
+                    <small>/ 5</small>
+                </strong>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- FEEDBACK -->
+
+    <div class="admin-section-card">
+
+        <div class="admin-section-header">
+
+            <div>
+                <span class="admin-section-label">
+                    <i class="bi bi-chat-heart-fill"></i>
+                    USER MESSAGES
+                </span>
+
+                <h2>Feedback Received</h2>
+            </div>
+
+            <span class="admin-count">
+                {{ feedback|length }} submissions
+            </span>
+
+        </div>
+
+
+        {% if feedback %}
+
+        <div class="feedback-list">
+
+            {% for item in feedback %}
+
+            <div class="feedback-item">
+
+                <div class="feedback-top">
+
+                    <div class="feedback-user">
+
+                        <div class="feedback-avatar">
+                            {{ item["name"][0]|upper }}
+                        </div>
+
+                        <div>
+                            <h3>{{ item["name"] }}</h3>
+
+                            <span class="feedback-email">
+                                <i class="bi bi-envelope-fill"></i>
+                                {{ item["email"] }}
+                            </span>
+                        </div>
+
+                    </div>
+
+                    <span class="feedback-date">
+                        <i class="bi bi-clock"></i>
+                        {{ item["created_at"] }}
+                    </span>
+
+                </div>
+
+
+                <div class="feedback-subject">
+                    {{ item["subject"] }}
+                </div>
+
+
+                <div class="feedback-message">
+                    {{ item["message"] }}
+                </div>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+        {% else %}
+
+        <div class="admin-empty">
+
+            <i class="bi bi-chat-square-text"></i>
+
+            <h3>No feedback yet</h3>
+
+            <p>
+                Submitted feedback will appear here.
+            </p>
+
+        </div>
+
+        {% endif %}
+
+    </div>
+
+
+    <!-- RATINGS -->
+
+    <div class="admin-section-card ratings-admin-card">
+
+        <div class="admin-section-header">
+
+            <div>
+                <span class="admin-section-label">
+                    <i class="bi bi-star-fill"></i>
+                    USER REVIEWS
+                </span>
+
+                <h2>Ratings</h2>
+            </div>
+
+            <div class="average-rating">
+
+                <strong>{{ average_rating }}</strong>
+
+                <div>
+                    <div class="admin-stars">
+                        {% for i in range(1, 6) %}
+
+                            {% if i <= average_rating %}
+                                <i class="bi bi-star-fill active"></i>
+                            {% else %}
+                                <i class="bi bi-star"></i>
+                            {% endif %}
+
+                        {% endfor %}
+                    </div>
+
+                    <span>{{ total_ratings }} total ratings</span>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- DISTRIBUTION -->
+
+        <div class="rating-distribution">
+
+            {% for level in range(5, 0, -1) %}
+
+                {% set count = 0 %}
+
+                {% for item in rating_distribution %}
+
+                    {% if item["rating"] == level %}
+                        {% set count = item["count"] %}
+                    {% endif %}
+
+                {% endfor %}
+
+                {% if total_ratings > 0 %}
+                    {% set percentage = (count / total_ratings * 100)|round|int %}
+                {% else %}
+                    {% set percentage = 0 %}
+                {% endif %}
+
+                <div class="rating-row">
+
+                    <span>{{ level }}</span>
+
+                    <i class="bi bi-star-fill"></i>
+
+                    <div class="rating-bar">
+                        <div
+                            class="rating-bar-fill"
+                            data-width="{{ percentage }}">
+                        </div>
+                    </div>
+
+                    <strong>{{ count }}</strong>
+
+                </div>
+
+            {% endfor %}
+
+        </div>
+
+
+        <!-- INDIVIDUAL RATINGS -->
+
+        {% if ratings %}
+
+        <div class="individual-ratings">
+
+            <h3>Recent Ratings</h3>
+
+            <div class="rating-table">
+
+                {% for rating in ratings %}
+
+                <div class="rating-table-row">
+
+                    <span class="rating-id">
+                        #{{ rating["id"] }}
+                    </span>
+
+                    <div class="rating-stars-small">
+
+                        {% for i in range(1, 6) %}
+
+                            {% if i <= rating["rating"] %}
+                                <i class="bi bi-star-fill active"></i>
+                            {% else %}
+                                <i class="bi bi-star"></i>
+                            {% endif %}
+
+                        {% endfor %}
+
+                    </div>
+
+                    <strong>
+                        {{ rating["rating"] }}/5
+                    </strong>
+
+                    <span class="rating-date">
+                        {{ rating["created_at"] }}
+                    </span>
+
+                </div>
+
+                {% endfor %}
+
+            </div>
+
+        </div>
+
+        {% else %}
+
+        <div class="admin-empty">
+
+            <i class="bi bi-star"></i>
+
+            <h3>No ratings yet</h3>
+
+            <p>
+                User ratings will appear here.
+            </p>
+
+        </div>
+
+        {% endif %}
+
+    </div>
+
+</section>
+<script>
+document.querySelectorAll(".rating-bar-fill").forEach(function (bar) {
+    bar.style.width = bar.dataset.width + "%";
+});
+</script>
+{% endblock %}

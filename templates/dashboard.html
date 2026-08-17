@@ -1,0 +1,600 @@
+{% extends "base.html" %}
+
+{% block title %}
+Dashboard
+{% endblock %}
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+{% endblock %}
+
+{% block content %}
+
+<!-- ===========================
+        DASHBOARD HERO
+=========================== -->
+
+<section class="dashboard-hero">
+
+    <!-- Hero Background -->
+    <div class="dashboard-bg-overlay"></div>
+
+    <div class="container">
+
+        <div class="dashboard-hero-content">
+
+            <!-- LEFT CONTENT -->
+            <div class="dashboard-left">
+
+                <span class="dashboard-badge">
+                    <i class="bi bi-grid-1x2-fill"></i>
+                    AI Powered Dashboard
+                </span>
+
+                <h1>
+                    AI Farming <span>Dashboard</span>
+                </h1>
+
+                <p>
+                    Monitor crop recommendations, plant disease detection,
+                    weather forecasts and AI insights from one intelligent
+                    control center designed for smart farming.
+                </p>
+
+                <div class="dashboard-buttons">
+
+                    <a href="{{ url_for('history.history') }}"
+                       class="btn dashboard-btn-primary">
+
+                        <i class="bi bi-clock-history"></i>
+                        View History
+
+                    </a>
+
+                    <a href="{{ url_for('chatbot.chatbot') }}"
+                       class="btn dashboard-btn-outline">
+
+                        <i class="bi bi-robot"></i>
+                        AI Assistant
+
+                    </a>
+
+                </div>
+
+            </div>
+
+            <!-- ===========================
+                CENTER SECTION
+            =========================== -->
+
+            <!-- Background artwork is used directly.
+                Center image removed intentionally. -->
+
+            <!-- ===========================
+                RIGHT SECTION
+            =========================== -->
+
+            <div class="dashboard-right">
+
+                <div class="overview-card">
+
+                    <div class="overview-header">
+
+                        <div>
+
+                            <h4>Today's Overview</h4>
+
+                            <span>AI Farming Status</span>
+
+                        </div>
+
+                        <div class="status-live">
+
+                            <span class="live-dot"></span>
+
+                            LIVE
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Crop -->
+
+                    <div class="overview-item">
+
+                        <div class="overview-icon crop">
+
+                            <i class="bi bi-flower1"></i>
+
+                        </div>
+
+                        <div class="overview-text">
+
+                            <h6>Crop Recommendation</h6>
+
+                            <small>Predictions</small>
+
+                        </div>
+
+                        <div class="overview-value">
+
+                            {{ today_crop_count }}
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Disease -->
+
+                    <div class="overview-item">
+
+                        <div class="overview-icon disease">
+
+                            <i class="bi bi-bug"></i>
+
+                        </div>
+
+                        <div class="overview-text">
+
+                            <h6>Disease Detection</h6>
+
+                            <small>Analyses</small>
+
+                        </div>
+
+                        <div class="overview-value">
+
+                            {{ today_disease_count }}
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Weather -->
+
+                    <div class="overview-item">
+
+                        <div class="overview-icon weather">
+
+                            <i class="bi bi-cloud-drizzle"></i>
+
+                        </div>
+
+                        <div class="overview-text">
+
+                            <h6>Weather Forecast</h6>
+
+                            <small>Forecasts</small>
+
+                        </div>
+
+                        <div class="overview-value">
+
+                            {{ today_weather_count }}
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- AI -->
+
+                    <div class="overview-item">
+
+                        <div class="overview-icon ai">
+
+                            <i class="bi bi-robot"></i>
+
+                        </div>
+
+                        <div class="overview-text">
+
+                            <h6>AI Assistant</h6>
+
+                            <small>Accuracy</small>
+
+                        </div>
+
+                        <div class="overview-value success">
+
+                            92%
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="overview-footer">
+
+                        <i class="bi bi-check-circle-fill"></i>
+
+                        All Systems Operational
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            </div>
+
+            </div>
+
+            </section>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ==================================================
+                DASHBOARD WORKSPACE
+=================================================== -->
+
+<section class="dashboard-workspace">
+
+    <div class="container">
+
+        <div class="workspace-grid">
+
+            <!-- LEFT COLUMN -->
+
+            <div class="workspace-left">
+
+                <!-- Module Usage -->
+
+                <div class="dashboard-card usage-card">
+
+                    <div class="card-header">
+
+                        <div>
+
+                            <h3>
+                                <i class="fas fa-chart-line"></i>
+                                Module Usage Overview
+                            </h3>
+
+                            <p>Your activity across all AI Farming modules</p>
+
+                        </div>
+
+                        <select class="chart-filter">
+
+                            <option selected>Overall</option>
+
+                        </select>
+
+                    </div>
+
+                    <div class="chart-container">
+
+                        <canvas id="moduleUsageChart"></canvas>
+
+                    </div>
+
+                    <div class="chart-legend">
+
+                        <span><i class="legend green"></i>Crop</span>
+
+                        <span><i class="legend brown"></i>Disease</span>
+
+                        <span><i class="legend blue"></i>Weather</span>
+
+                    </div>
+
+                </div>
+
+                <!-- Statistics -->
+
+                <div class="dashboard-card statistics-card">
+
+                    <div class="card-header">
+
+                        <div>
+
+                            <h3>
+                                <i class="bi bi-bar-chart-fill"></i>
+                                Statistics
+                            </h3>
+
+                            <p>Overall platform performance</p>
+
+                        </div>
+
+                    </div>
+
+                    <div class="stats-mini-grid">
+
+                        <div class="mini-stat">
+
+                            <div class="mini-icon crop">
+                                <i class="bi bi-flower1"></i>
+                            </div>
+
+                            <div>
+                                <h4>{{ total_crop_count }}</h4>
+                                <span>Crop Predictions</span>
+                            </div>
+
+                        </div>
+
+                        <div class="mini-stat">
+
+                            <div class="mini-icon disease">
+                                <i class="bi bi-bug"></i>
+                            </div>
+
+                            <div>
+                                <h4>{{ total_disease_count }}</h4>
+                                <span>Disease Analysis</span>
+                            </div>
+
+                        </div>
+
+                        <div class="mini-stat">
+
+                            <div class="mini-icon weather">
+                                <i class="bi bi-cloud-sun"></i>
+                            </div>
+
+                            <div>
+                                <h4>{{ total_weather_count }}</h4>
+                                <span>Forecast Days</span>
+                            </div>
+
+                        </div>
+
+                        <div class="mini-stat">
+
+                            <div class="mini-icon ai">
+                                <i class="bi bi-robot"></i>
+                            </div>
+
+                            <div>
+                                <h4>92%</h4>
+                                <span>AI Accuracy</span>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- RIGHT COLUMN -->
+
+            <div class="workspace-right">
+
+                <!-- Quick Access -->
+
+                <div class="dashboard-card quick-card">
+
+                    <div class="card-header">
+
+                        <div>
+                            <h3>
+                                <i class="bi bi-grid"></i>
+                                Quick Access
+                            </h3>
+
+                            <p>Go to farming modules instantly</p>
+                        </div>
+
+                    </div>
+
+                    <div class="quick-grid">
+
+                        <a href="{{ url_for('crop.crop') }}" class="quick-item crop">
+                            <i class="bi bi-flower1"></i>
+                            <span>Crop Recommendation</span>
+                            <i class="bi bi-arrow-right-circle-fill arrow"></i>
+                        </a>
+
+                        <a href="{{ url_for('disease.disease') }}" class="quick-item disease">
+                            <i class="bi bi-bug"></i>
+                            <span>Disease Detection</span>
+                            <i class="bi bi-arrow-right-circle-fill arrow"></i>
+                        </a>
+
+                        <a href="{{ url_for('weather.weather') }}" class="quick-item weather">
+                            <i class="bi bi-cloud-sun"></i>
+                            <span>Weather Forecast</span>
+                            <i class="bi bi-arrow-right-circle-fill arrow"></i>
+                        </a>
+
+                        <a href="{{ url_for('chatbot.chatbot') }}" class="quick-item ai">
+                            <i class="bi bi-robot"></i>
+                            <span>AI Assistant</span>
+                            <i class="bi bi-arrow-right-circle-fill arrow"></i>
+                        </a>
+
+                    </div>
+
+                </div>
+
+                <!-- Recent Activity -->
+
+                <div class="dashboard-card recent-card">
+
+                    <div class="card-header">
+
+                        <div>
+
+                            <h3>
+                                <i class="bi bi-clock-history"></i>
+                                Recent Activity
+                            </h3>
+
+                            <p>Latest AI farming activities</p>
+
+                        </div>
+
+                        <a href="{{ url_for('history.history') }}" class="view-all-btn">
+                            View All
+                        </a>
+
+                    </div>
+
+                    <div class="activity-list">
+
+                        {% for activity in recent_activities %}
+
+                    <div class="activity-item">
+
+                        <div class="activity-icon {{ activity.type }}">
+
+                        {% if activity.type == 'crop' %}
+                            <i class="bi bi-flower1"></i>
+
+                        {% elif activity.type == 'disease' %}
+                            <i class="bi bi-bug"></i>
+
+                        {% else %}
+                            <i class="bi bi-cloud-sun"></i>
+
+                        {% endif %}
+
+                    </div>
+
+                    <div class="activity-content">
+
+                        <h6>{{ activity.title }}</h6>
+
+                        <small>{{ activity.time }}</small>
+
+                    </div>
+
+                        <span class="status completed">
+
+                            Completed
+
+                        </span>
+
+                    </div>
+
+                    {% endfor %}
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+{% endblock %}
+
+{% block extra_js %}
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+
+const ctx = document.getElementById("moduleUsageChart");
+
+if (ctx) {
+
+new Chart(ctx, {
+
+type: "line",
+
+data: {
+
+labels:["Mon","Tue","Wed","Thu","Fri","Sat","Sun"],
+
+datasets:[
+
+{
+label:"Crop",
+data: {{ crop_week_data | tojson }},
+borderColor:"#22C55E",
+borderWidth:3,
+tension:.45,
+pointRadius: 0,
+pointHoverRadius: 5,
+pointHoverBorderWidth: 2,
+fill:false
+},
+
+{
+label:"Disease",
+data: {{ disease_week_data | tojson }},
+borderColor:"#C77B30",
+borderWidth:3,
+tension:.45,
+pointRadius:0,
+fill:false
+},
+
+{
+label:"Weather",
+data: {{ weather_week_data | tojson }},
+borderColor:"#3B82F6",
+borderWidth:3,
+tension:.45,
+pointRadius:0,
+fill:false
+}
+
+]
+
+},
+
+options:{
+
+responsive:true,
+
+maintainAspectRatio:false,
+
+plugins:{
+    tooltip: {
+    backgroundColor: "#163020",
+    titleColor: "#ffffff",
+    bodyColor: "#ffffff",
+    borderColor: "#22C55E",
+    borderWidth: 1,
+    padding: 12,
+    displayColors: true
+},
+legend:{
+display:false
+}
+},
+
+interaction:{
+mode:"index",
+intersect:false
+},
+
+scales:{
+
+x:{
+grid:{
+display:false
+}
+},
+
+y:{
+beginAtZero:true,
+grid:{
+color:"#eef2f7"
+}
+}
+
+}
+
+}
+
+});
+
+}
+
+</script>
+
+{% endblock %}

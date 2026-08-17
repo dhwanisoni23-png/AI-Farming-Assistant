@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>
+        {% block title %}
+        AI Farming Assistant
+        {% endblock %}
+    </title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Global CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
+
+    <!-- Page CSS -->
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+
+    <!-- ======================================
+                PREMIUM NAVBAR
+    ====================================== -->
+
+    <header class="header">
+
+        <div class="nav-container">
+
+            <!-- Logo -->
+            <div class="logo-section">
+
+                <a href="{{ url_for('home') }}" class="logo-wrapper">
+
+                    <div class="logo-icon">
+
+                        <img src="{{ url_for('static', filename='images/logo.png') }}"
+                            alt="AI Farming Logo">
+
+                    </div>
+
+                    <div class="logo-content">
+
+                        <h4>AI Farming</h4>
+
+                        <span>ASSISTANT</span>
+
+                        <p>Smart Agriculture Platform</p>
+
+                    </div>
+
+                </a>
+
+            </div>
+
+            <!-- Navigation -->
+            <nav class="nav-links">
+
+                <a href="{{ url_for('home') }}" class="{% if request.endpoint=='home' %}active{% endif %}">Home</a>
+
+                <a href="{{ url_for('crop.crop') }}" class="{% if request.endpoint=='crop.crop' %}active{% endif %}">Crop</a>
+
+                <a href="{{ url_for('disease.disease') }}" class="{% if request.endpoint=='disease.disease' %}active{% endif %}">Disease</a>
+
+                <a href="{{ url_for('weather.weather') }}" class="{% if request.endpoint=='weather.weather' %}active{% endif %}">Weather</a>
+
+                <a href="{{ url_for('chatbot.chatbot') }}" class="{% if request.endpoint=='chatbot.chatbot' %}active{% endif %}">AI Assistant</a>
+
+                <a href="{{ url_for('dashboard.dashboard') }}" class="{% if request.endpoint=='dashboard.dashboard' %}active{% endif %}">Dashboard</a>
+
+                <a href="{{ url_for('history.history') }}" class="{% if request.endpoint=='history.history' %}active{% endif %}">History</a>
+
+                <a href="{{ url_for('about.about') }}" class="{% if request.endpoint=='about.about' %}active{% endif %}">About</a>
+
+                <a href="{{ url_for('contact.contact') }}" class="{% if request.endpoint=='contact.contact' %}active{% endif %}">Contact</a>
+
+            </nav>
+
+        
+
+        </div>
+
+    </header>
+
+    <!-- Main Content -->
+    <main>
+
+        {% block content %}
+        {% endblock %}
+
+    </main>
+
+<!-- ======================================
+            PREMIUM FOOTER
+====================================== -->
+
+<footer class="footer">
+
+    <div class="footer-container">
+
+        <div class="footer-grid">
+
+            <!-- Brand -->
+
+            <div class="footer-brand">
+
+                <div class="footer-logo">
+
+                    <img src="{{ url_for('static', filename='images/logo.png') }}" alt="AI Farming Logo">
+
+                    <div>
+
+                        <h3>AI Farming Assistant</h3>
+
+                        <span>Smart Agriculture Platform</span>
+
+                    </div>
+
+                </div>
+
+                <p>
+                    Empowering modern agriculture with Artificial Intelligence,
+                    Machine Learning, Deep Learning and real-time weather
+                    intelligence to help farmers make smarter decisions.
+                </p>
+
+                <div class="footer-social">
+
+                    <!-- GitHub -->
+                    <a href="https://github.com/dhwanisoni23-png/AI-Farming-Assistant"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="GitHub">
+                        <i class="bi bi-github"></i>
+                    </a>
+
+                    <!-- LinkedIn -->
+                    <a href="https://www.linkedin.com/in/dhwani-soni23"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="LinkedIn">
+                        <i class="bi bi-linkedin"></i>
+                    </a>
+
+                    <!-- Email -->
+                    <a href="mailto:dhwanisoni2323@gmail.com"
+                    aria-label="Email">
+                        <i class="bi bi-envelope-fill"></i>
+                    </a>
+
+                </div>
+
+            </div>
+
+            <!-- Quick Links -->
+
+            <div class="footer-column">
+
+                <h4>
+                    <i class="bi bi-grid"></i>
+                    Quick Links
+                </h4>
+
+                <ul>
+
+                    <li><a href="{{ url_for('home') }}">Home</a></li>
+
+                    <li><a href="{{ url_for('crop.crop') }}">Crop Recommendation</a></li>
+
+                    <li><a href="{{ url_for('disease.disease') }}">Disease Detection</a></li>
+
+                    <li><a href="{{ url_for('weather.weather') }}">Weather Forecast</a></li>
+
+                </ul>
+
+            </div>
+
+            <!-- AI Modules -->
+
+            <div class="footer-column">
+
+                <h4>
+                    <i class="bi bi-cpu"></i>
+                    AI Modules
+                </h4>
+
+                <ul>
+
+                    <li><a href="{{ url_for('chatbot.chatbot') }}">AI Assistant</a></li>
+
+                    <li><a href="{{ url_for('dashboard.dashboard') }}">Dashboard</a></li>
+
+                    <li><a href="{{ url_for('history.history') }}">History</a></li>
+
+                    <li>Machine Learning Models</li>
+
+                </ul>
+
+            </div>
+
+            <!-- Resources -->
+
+            <div class="footer-column">
+
+                <h4>
+                    <i class="bi bi-folder2-open"></i>
+                    Resources
+                </h4>
+
+                <ul>
+
+                    <li><a href="{{ url_for('about.about') }}">About</a></li>
+
+                    <li><a href="{{ url_for('contact.contact') }}">Contact</a></li>
+
+                    <li>Documentation</li>
+
+                    <li>Support</li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+
+            <p>
+
+                © 2026 AI Farming Assistant. All Rights Reserved.
+
+            </p>
+
+            <p>
+
+                Designed & Developed by
+                <strong>Dhwani Soni</strong>
+
+            </p>
+
+        </div>
+
+    </div>
+
+</footer>
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- Page Specific JavaScript -->
+{% block extra_js %}{% endblock %}
+
+
+
+<!-- NAVBAR SCROLL BEHAVIOR -->
+<script>
+(function () {
+
+    const navbar = document.querySelector(".header");
+
+    if (!navbar) return;
+
+    let lastScrollY = window.pageYOffset;
+    let ticking = false;
+
+    function handleNavbar() {
+
+        const currentScrollY = window.pageYOffset;
+
+        /* Always show at top */
+        if (currentScrollY <= 25) {
+
+            navbar.classList.remove("header-hidden");
+
+        }
+
+        /* Scrolling DOWN */
+        else if (currentScrollY > lastScrollY + 3) {
+
+            navbar.classList.add("header-hidden");
+
+        }
+
+        /* Scrolling UP */
+        else if (currentScrollY < lastScrollY - 3) {
+
+            navbar.classList.remove("header-hidden");
+
+        }
+
+        lastScrollY = currentScrollY;
+
+        ticking = false;
+    }
+
+
+    window.addEventListener("scroll", function () {
+
+        if (!ticking) {
+
+            window.requestAnimationFrame(handleNavbar);
+
+            ticking = true;
+        }
+
+    }, { passive: true });
+
+})();
+</script>
+
+
+</body>
+</html>

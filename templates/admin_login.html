@@ -1,0 +1,98 @@
+{% extends "base.html" %}
+
+{% block title %}
+Developer Access
+{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet"
+      href="{{ url_for('static', filename='css/info.css') }}">
+{% endblock %}
+
+{% block content %}
+
+<section class="admin-login-page">
+
+    <div class="admin-login-card">
+
+        <div class="admin-login-icon">
+            <i class="bi bi-shield-lock-fill"></i>
+        </div>
+
+        <span class="admin-login-label">
+            DEVELOPER ACCESS
+        </span>
+
+        <h1>Private Dashboard</h1>
+
+        <p>
+            Enter the developer password to view
+            feedback and ratings.
+        </p>
+
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+
+            {% if messages %}
+
+                {% for category, message in messages %}
+
+                    <div class="admin-login-message">
+                        <i class="bi bi-exclamation-circle-fill"></i>
+                        {{ message }}
+                    </div>
+
+                {% endfor %}
+
+            {% endif %}
+
+        {% endwith %}
+
+
+        <form method="POST">
+
+            <label for="password">
+                Admin Password
+            </label>
+
+            <div class="admin-password-wrapper">
+
+                <i class="bi bi-lock-fill"></i>
+
+                <input
+                    type="password"
+                    id="password"
+                    name="password"
+                    placeholder="Enter password"
+                    required
+                    autofocus>
+
+            </div>
+
+
+            <button
+                type="submit"
+                class="admin-login-btn">
+
+                <span>Unlock Dashboard</span>
+
+                <i class="bi bi-arrow-right"></i>
+
+            </button>
+
+        </form>
+
+
+        <div class="admin-security-note">
+
+            <i class="bi bi-shield-check"></i>
+
+            Developer-only access
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

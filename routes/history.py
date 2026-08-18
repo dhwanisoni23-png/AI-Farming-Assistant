@@ -34,7 +34,7 @@ def history():
                 temperature,
                 humidity,
                 rainfall,
-                confidence,
+                NULL AS confidence,
                 created_at
             FROM crop_history
         """)

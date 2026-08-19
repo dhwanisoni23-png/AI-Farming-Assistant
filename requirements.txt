@@ -5,7 +5,7 @@ Werkzeug
 numpy
 pandas
 joblib
-scikit-learn
+scikit-learn==1.6.1
 tensorflow
 Pillow
 google-genai

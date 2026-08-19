@@ -21,6 +21,7 @@ CREATE TABLE IF NOT EXISTS crop_history (
     ph REAL,
     rainfall REAL,
     recommendation TEXT,
+    confidence REAL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 )
 """)
@@ -85,6 +86,21 @@ CREATE TABLE IF NOT EXISTS ratings (
 )
 """)
 
+# ============================================================
+# DATABASE MIGRATION
+# ============================================================
+
+# Add confidence column to crop_history if it does not exist
+cursor.execute("PRAGMA table_info(crop_history)")
+columns = [row[1] for row in cursor.fetchall()]
+
+if "confidence" not in columns:
+    cursor.execute(
+        "ALTER TABLE crop_history ADD COLUMN confidence REAL"
+    )
+    print("Migration successful: added confidence column to crop_history")
+else:
+    print("Migration skipped: confidence column already exists")
 
 connection.commit()
 connection.close()

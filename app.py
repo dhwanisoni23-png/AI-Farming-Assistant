@@ -2,6 +2,7 @@ from flask import Flask, render_template
 from tensorflow.keras.models import load_model
 from dotenv import load_dotenv
 import os
+import database.init_db
 import requests
 
 from routes.crop import crop_bp

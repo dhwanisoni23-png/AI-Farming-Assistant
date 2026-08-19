@@ -80,8 +80,8 @@ def predict():
             info=info
         )
 
-    except Exception:
-
+    except Exception as e:
+        print("CROP PREDICTION ERROR:", repr(e))
         return render_template(
             "crop.html",
             error="Something went wrong. Please check your inputs and try again."
